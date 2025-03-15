@@ -55,7 +55,7 @@ public class MediaFile {
     private Employee employee;
     @ManyToOne
     @JoinColumn(name = "member_id", nullable = true)
-    private Members member;
+    private Member member;
     @ManyToOne
     @JoinColumn(name = "news_id", nullable = true)
     private News news;

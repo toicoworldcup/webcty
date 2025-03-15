@@ -6,11 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class CompanyInfoService {
-
     @Autowired
     private CompanyInfoRepository companyInfoRepository;
 
@@ -18,11 +16,24 @@ public class CompanyInfoService {
         return companyInfoRepository.findAll();
     }
 
-    public Optional<CompanyInfo> getCompanyInfoById(Long id) {
-        return companyInfoRepository.findById(id);
+    public CompanyInfo getCompanyInfoById(Long id) {
+        return companyInfoRepository.findById(id).orElse(null);
     }
 
-    public CompanyInfo saveCompanyInfo(CompanyInfo companyInfo) {
+    public CompanyInfo createCompanyInfo(CompanyInfo companyInfo) {
+        return companyInfoRepository.save(companyInfo);
+    }
+
+    public CompanyInfo updateCompanyInfo(Long id, CompanyInfo updatedCompanyInfo) {
+        CompanyInfo companyInfo = getCompanyInfoById(id);
+        companyInfo.setSiteName(updatedCompanyInfo.getSiteName());
+        companyInfo.setSiteDescription(updatedCompanyInfo.getSiteDescription());
+        companyInfo.setContactEmail(updatedCompanyInfo.getContactEmail());
+        companyInfo.setContactPhone(updatedCompanyInfo.getContactPhone());
+        companyInfo.setContactAddress(updatedCompanyInfo.getContactAddress());
+        companyInfo.setWorkingHours(updatedCompanyInfo.getWorkingHours());
+        companyInfo.setMapEmbedUrl(updatedCompanyInfo.getMapEmbedUrl());
+        companyInfo.setModifiedBy(updatedCompanyInfo.getModifiedBy());
         return companyInfoRepository.save(companyInfo);
     }
 

@@ -1,18 +1,15 @@
 package com.example.webcty.entities;
+
 import jakarta.persistence.*;
 import lombok.*;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table(name = "about_us")
-@Getter
-@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class AboutUs {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -23,25 +20,35 @@ public class AboutUs {
     @Column(columnDefinition = "TEXT", nullable = false)
     private String content;
 
-    @OneToMany(mappedBy = "aboutUs", cascade = CascadeType.ALL, orphanRemoval = true) // 👈 Sửa từ "aboutus" thành "aboutUs"
-    private List<MediaFile> images = new ArrayList<>();
+//    @OneToMany(mappedBy = "aboutUs", cascade = CascadeType.ALL, orphanRemoval = true) // 👈 Sửa từ "aboutus" thành "aboutUs"
+//    private List<MediaFile> mediaFiles;
 
-    private Integer modifiedBy;
+    private String modifiedBy;
 
     @Column(updatable = false)
-    private LocalDateTime createdAt;
+    private LocalDateTime createdAt = LocalDateTime.now();
 
-    private LocalDateTime updatedAt;
-
-    @PrePersist
-    protected void onCreate() {
-        this.createdAt = LocalDateTime.now();
-        this.updatedAt = LocalDateTime.now();
-    }
+    private LocalDateTime updatedAt = LocalDateTime.now();
 
     @PreUpdate
     protected void onUpdate() {
         this.updatedAt = LocalDateTime.now();
     }
+
+    public Long getId() { return id; }
+
+    public String getTitle() { return title; }
+    public void setTitle(String title) { this.title = title; }
+
+    public String getContent() { return content; }
+    public void setContent(String content) { this.content = content; }
+
+    public String getModifiedBy() { return modifiedBy; }
+    public void setModifiedBy(String modifiedBy) { this.modifiedBy = modifiedBy; }
+
+    public LocalDateTime getCreatedAt() { return createdAt; }
+
+    public LocalDateTime getUpdatedAt() { return updatedAt; }
+
 }
 

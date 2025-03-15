@@ -1,9 +1,9 @@
 package com.example.webcty.entities;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "products")
@@ -20,14 +20,13 @@ public class Product {
     @Column(columnDefinition = "TEXT", nullable = false)
     private String content;
 
-    private String mediaId;
+//    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
+//    private List<MediaFile> mediaFiles; //Chưa sử dụng
 
     @Column(unique = true, nullable = false, length = 255)
     private String slug;
 
-    @Column(length = 255)  // Lưu mã nhân viên thay vì ID
     private String modifiedBy;
-
 
     @Column(updatable = false)
     private LocalDateTime createdAt = LocalDateTime.now();
@@ -35,9 +34,9 @@ public class Product {
     private LocalDateTime updatedAt = LocalDateTime.now();
 
     @PreUpdate
-    protected void onUpdate() {
-        this.updatedAt = LocalDateTime.now();
-    }
+    protected void onUpdate() { this.updatedAt = LocalDateTime.now(); }
+
+    public Long getId() { return id; }
 
     public String getTitle() { return title; }
     public void setTitle(String title) { this.title = title; }
@@ -45,13 +44,13 @@ public class Product {
     public String getContent() { return content; }
     public void setContent(String content) { this.content = content; }
 
-    public String getMediaId() { return mediaId; }
-    public void setMediaId(String mediaId) { this.mediaId = mediaId; }
-
     public String getSlug() { return slug; }
     public void setSlug(String slug) { this.slug = slug; }
-    public String getModifiedByEmCode() {
-        return modifiedBy;
-    }
 
+    public String getModifiedBy() { return modifiedBy; }
+    public void setModifiedBy(String modifiedBy) { this.modifiedBy = modifiedBy; }
+
+    public LocalDateTime getCreatedAt() { return createdAt; }
+
+    public LocalDateTime getUpdatedAt() { return updatedAt; }
 }

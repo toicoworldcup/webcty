@@ -6,26 +6,29 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
-@Table(name = "company_history")
+@Table(name = "members")
 @NoArgsConstructor
 @AllArgsConstructor
-public class CompanyHistory {
+public class Member {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable = false, length = 255)
-    private String title;
+    private String name;
 
-    @Column(nullable = false)
-    private Integer year;
+    @Column(nullable = false, length = 255)
+    private String position;
 
     @Column(columnDefinition = "TEXT")
-    private String description;
+    private String bio;
+
+    @Column(length = 255, unique = true)
+    private String email;
 
     private Integer orderIndex;
 
-//    @OneToMany(mappedBy = "companyHistory", cascade = CascadeType.ALL, orphanRemoval = true)
+//    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true)
 //    private List<MediaFile> mediaFiles;
 
     private String modifiedBy;
@@ -42,14 +45,17 @@ public class CompanyHistory {
 
     public Long getId() { return id; }
 
-    public String getTitle() { return title; }
-    public void setTitle(String title) { this.title = title; }
+    public String getName() { return name; }
+    public void setName(String name) { this.name = name; }
 
-    public Integer getYear() { return year; }
-    public void setYear(Integer year) { this.year = year; }
+    public String getPosition() { return position; }
+    public void setPosition(String position) { this.position = position; }
 
-    public String getDescription() { return description; }
-    public void setDescription(String description) { this.description = this.description; }
+    public String getBio() { return bio; }
+    public void setBio(String bio) { this.bio = this.bio; }
+
+    public String getEmail() { return email; }
+    public void setEmail(String email) { this.email = email; }
 
     public Integer getOrderIndex() { return orderIndex; }
     public void setOrderIndex(Integer orderIndex) { this.orderIndex = orderIndex; }
