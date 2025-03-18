@@ -31,10 +31,11 @@ public class NewsController {
 
     @PutMapping("/{id}")
     public ResponseEntity<News> updateNews(@PathVariable Long id, @RequestBody News updateNews) {
-        return ResponseEntity.ok(newsService.updateNews(id, updateNews));    }
+        return ResponseEntity.ok(newsService.updateNews(id, updateNews));
+    }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deletaNews(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteNews(@PathVariable Long id) {
         newsService.deleteNews(id);
         return ResponseEntity.noContent().build();
     }

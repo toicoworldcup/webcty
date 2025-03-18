@@ -1,7 +1,6 @@
 package com.example.webcty.controllers;
 
 import com.example.webcty.entities.Employee;
-import com.example.webcty.entities.Product;
 import com.example.webcty.services.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

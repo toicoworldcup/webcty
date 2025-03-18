@@ -1,6 +1,7 @@
 package com.example.webcty.services;
 
 import com.example.webcty.entities.MediaFile;
+import com.example.webcty.entities.Product;
 import com.example.webcty.enums.MediaType;
 import com.example.webcty.repositories.MediaFileRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +26,23 @@ public class MediaFileService {
         return mediaFileRepository.findByEntityTypeAndEntityId(mediaType, typeId);
     }
 
-    public MediaFile saveMediaFile(MediaFile mediaFile) {
+    public MediaFile createMediaFile(MediaFile mediaFile) {
         return mediaFileRepository.save(mediaFile);
+    }
+
+    public MediaFile updateMediaFile(MediaType mediaType, Long typeId, MediaFile updatedMediaFile) {
+        MediaFile mediaFile = getByMediaTypeAndTypeId(mediaType, typeId);
+        mediaFile.setEntityType(updatedMediaFile.getEntityType());
+        mediaFile.setEntityId(updatedMediaFile.getEntityId());
+        mediaFile.setUrl(updatedMediaFile.getUrl());
+        mediaFile.setFileName(updatedMediaFile.getFileName());
+        mediaFile.setFilePath(updatedMediaFile.getFilePath());
+        mediaFile.setFileType(updatedMediaFile.getFileType());
+        mediaFile.setFileSize(updatedMediaFile.getFileSize());
+        return mediaFileRepository.save(mediaFile);
+    }
+
+    public void deleteMediaFile(Long id) {
+        mediaFileRepository.deleteById(id);
     }
 }

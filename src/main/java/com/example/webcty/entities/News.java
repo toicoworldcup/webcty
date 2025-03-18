@@ -23,9 +23,6 @@ public class News extends BaseEntity {
     @Column(unique = true, nullable = false, length = 255)
     private String slug;
 
-//    @OneToMany(mappedBy = "news", cascade = CascadeType.ALL, orphanRemoval = true)
-//    private List<MediaFile> mediaFiles;
-
     public Long getId() { return id; }
 
     public String getTitle() { return title; }

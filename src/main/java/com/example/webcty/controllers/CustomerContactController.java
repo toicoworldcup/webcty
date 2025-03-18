@@ -1,6 +1,5 @@
 package com.example.webcty.controllers;
 
-
 import com.example.webcty.entities.CustomerContact;
 import com.example.webcty.services.CustomerContactService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/customer-contact")
+@RequestMapping("/api/customer-contacts")
 public class CustomerContactController {
     @Autowired
     private CustomerContactService customerContactService;
@@ -32,7 +31,8 @@ public class CustomerContactController {
 
     @PutMapping("/{id}")
     public ResponseEntity<CustomerContact> updateCustomerContact(@PathVariable Long id, @RequestBody CustomerContact updateCustomerContact) {
-        return ResponseEntity.ok(customerContactService.updateCustomerContact(id, updateCustomerContact));    }
+        return ResponseEntity.ok(customerContactService.updateCustomerContact(id, updateCustomerContact));
+    }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteCustomerContact(@PathVariable Long id) {

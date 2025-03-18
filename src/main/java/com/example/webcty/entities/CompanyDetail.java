@@ -4,9 +4,6 @@ import com.example.webcty.bases.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.time.LocalDateTime;
-
-
 @Entity
 @Table(name = "company_details")
 @NoArgsConstructor

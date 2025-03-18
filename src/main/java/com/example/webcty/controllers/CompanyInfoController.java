@@ -31,7 +31,8 @@ public class CompanyInfoController {
 
     @PutMapping("/{id}")
     public ResponseEntity<CompanyInfo> updateCompanyInfo(@PathVariable Long id, @RequestBody CompanyInfo updateCompanyInfo) {
-        return ResponseEntity.ok(companyInfoService.updateCompanyInfo(id, updateCompanyInfo));    }
+        return ResponseEntity.ok(companyInfoService.updateCompanyInfo(id, updateCompanyInfo));
+    }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteCompanyInfo(@PathVariable Long id) {

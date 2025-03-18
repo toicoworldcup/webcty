@@ -31,7 +31,8 @@ public class CompanyMemberController {
 
     @PutMapping("/{id}")
     public ResponseEntity<CompanyMember> updateCompanyMember(@PathVariable Long id, @RequestBody CompanyMember updateCompanyMember) {
-        return ResponseEntity.ok(companyMemberService.updateCompanyMember(id, updateCompanyMember));    }
+        return ResponseEntity.ok(companyMemberService.updateCompanyMember(id, updateCompanyMember));
+    }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteCompanyMember(@PathVariable Long id) {

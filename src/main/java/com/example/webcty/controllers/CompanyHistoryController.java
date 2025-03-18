@@ -31,7 +31,8 @@ public class CompanyHistoryController {
 
     @PutMapping("/{id}")
     public ResponseEntity<CompanyHistory> updateCompanyHistory(@PathVariable Long id, @RequestBody CompanyHistory updateCompanyHistory) {
-        return ResponseEntity.ok(companyHistoryService.updateCompanyHistory(id, updateCompanyHistory));    }
+        return ResponseEntity.ok(companyHistoryService.updateCompanyHistory(id, updateCompanyHistory));
+    }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteCompanyHistory(@PathVariable Long id) {

@@ -3,7 +3,6 @@ package com.example.webcty.entities;
 import com.example.webcty.bases.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
-import java.util.List;
 
 @Entity
 @Table(name = "products")
@@ -22,9 +21,6 @@ public class Product extends BaseEntity {
 
     @Column(unique = true, nullable = false, length = 255)
     private String slug;
-
-//    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
-//    private List<MediaFile> mediaFiles; //Chưa sử dụng
 
     public Long getId() { return id; }
 
