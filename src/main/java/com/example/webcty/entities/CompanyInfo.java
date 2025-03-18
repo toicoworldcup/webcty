@@ -1,15 +1,15 @@
 package com.example.webcty.entities;
 
+import com.example.webcty.bases.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
-import java.time.LocalDateTime;
-import java.util.List;
+
 
 @Entity
 @Table(name = "company_info")
 @NoArgsConstructor
 @AllArgsConstructor
-public class CompanyInfo {
+public class CompanyInfo extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -31,22 +31,6 @@ public class CompanyInfo {
 
     private String workingHours;
     private String mapEmbedUrl;
-
-
-//    @OneToMany(mappedBy = "company", cascade = CascadeType.ALL, orphanRemoval = true)
-//    private List<MediaFile> mediaFiles; //Chưa sử dụng
-
-    private String modifiedBy;
-
-    @Column(updatable = false)
-    private LocalDateTime createdAt = LocalDateTime.now();
-
-    private LocalDateTime updatedAt = LocalDateTime.now();
-
-    @PreUpdate
-    protected void onUpdate() {
-        this.updatedAt = LocalDateTime.now();
-    }
 
     public Long getId() { return id; }
 
@@ -70,12 +54,4 @@ public class CompanyInfo {
 
     public String getMapEmbedUrl() { return mapEmbedUrl; }
     public void setMapEmbedUrl(String mapEmbedUrl) { this.mapEmbedUrl = mapEmbedUrl; }
-
-    public String getModifiedBy() { return modifiedBy; }
-    public void setModifiedBy(String modifiedBy) { this.modifiedBy = modifiedBy; }
-
-    public LocalDateTime getCreatedAt() { return createdAt; }
-
-    public LocalDateTime getUpdatedAt() { return updatedAt; }
 }
-

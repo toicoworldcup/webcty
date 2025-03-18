@@ -30,7 +30,6 @@ public class CompanyHistoryService {
         companyHistory.setYear(updatedCompanyHistory.getYear());
         companyHistory.setDescription(updatedCompanyHistory.getDescription());
         companyHistory.setOrderIndex(updatedCompanyHistory.getOrderIndex());
-        companyHistory.setModifiedBy(updatedCompanyHistory.getModifiedBy());
         return companyHistoryRepository.save(companyHistory);
     }
 

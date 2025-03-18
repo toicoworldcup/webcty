@@ -29,8 +29,6 @@ public class NewsService {
         news.setTitle(updatedNews.getTitle());
         news.setContent(updatedNews.getContent());
         news.setSlug(updatedNews.getSlug());
-        news.setAuthor(updatedNews.getAuthor());
-        news.setModifiedBy(updatedNews.getModifiedBy());
         return newsRepository.save(news);
     }
 

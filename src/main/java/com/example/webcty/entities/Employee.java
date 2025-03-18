@@ -3,15 +3,12 @@ package com.example.webcty.entities;
 import jakarta.persistence.*;
 import lombok.*;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 import com.example.webcty.enums.EmployeeRole;
 
 @Entity
 @Table(name = "employees")
-@Getter
-@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class Employee {
@@ -24,6 +21,7 @@ public class Employee {
 
     @Column(nullable = false, unique = true, length = 255)
     private String email;
+
     @Column(nullable = false, unique = true, length = 255)
     private String emCode;
 
@@ -35,21 +33,29 @@ public class Employee {
     private EmployeeRole role = EmployeeRole.EDITOR;
 
     @Column(updatable = false)
-    private LocalDateTime createdAt;
+    private LocalDateTime createdDate = LocalDateTime.now();
 
-    private LocalDateTime updatedAt;
-
-    @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<MediaFile> images = new ArrayList<>(); // Một công ty có nhiều ảnh
-
-    @PrePersist
-    protected void onCreate() {
-        this.createdAt = LocalDateTime.now();
-        this.updatedAt = LocalDateTime.now();
-    }
+    private LocalDateTime updatedDate = LocalDateTime.now();
 
     @PreUpdate
     protected void onUpdate() {
-        this.updatedAt = LocalDateTime.now();
+        this.updatedDate = LocalDateTime.now();
     }
+
+    public Long getId() { return id; }
+
+    public String getUsername() { return username; }
+
+    public String getEmail() { return email; }
+    public void setEmail(String content) { this.email = email; }
+
+    public String getEmCode() { return emCode; }
+
+    public String getPassword() { return password; }
+    public void setPassword(String password) { this.password = password; }
+
+    public EmployeeRole getRole() { return role; }
+
+    public LocalDateTime getCreatedDate() { return createdDate; }
+    public LocalDateTime getUpdatedDate() { return updatedDate; }
 }

@@ -29,7 +29,6 @@ public class ProductService {
         product.setTitle(updatedProduct.getTitle());
         product.setContent(updatedProduct.getContent());
         product.setSlug(updatedProduct.getSlug());
-        product.setModifiedBy(updatedProduct.getModifiedBy());
         return productRepository.save(product);
     }
 

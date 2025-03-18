@@ -33,7 +33,6 @@ public class CompanyInfoService {
         companyInfo.setContactAddress(updatedCompanyInfo.getContactAddress());
         companyInfo.setWorkingHours(updatedCompanyInfo.getWorkingHours());
         companyInfo.setMapEmbedUrl(updatedCompanyInfo.getMapEmbedUrl());
-        companyInfo.setModifiedBy(updatedCompanyInfo.getModifiedBy());
         return companyInfoRepository.save(companyInfo);
     }
 

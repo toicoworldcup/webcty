@@ -4,43 +4,52 @@ import jakarta.persistence.*;
 import lombok.*;
 import java.time.LocalDateTime;
 
+import com.example.webcty.enums.ContactStatus;
+
 @Entity
 @Table(name = "customer_contacts")
-@Getter
-@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class CustomerContact {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     @Column(nullable = false, length = 255)
-    private String name; // Tên người liên hệ
+    private String name;
 
     @Column(nullable = false, length = 255)
-    private String email; // Email
+    private String email;
 
     @Column(nullable = false, length = 20)
-    private String phone; // Số điện thoại
+    private String phone;
 
     @Column(columnDefinition = "TEXT", nullable = false)
-    private String message; // Nội dung liên hệ
+    private String message;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false, length = 10)
-    private ContactStatus status = ContactStatus.NEW; // Trạng thái (NEW, REPLIED, CLOSED)
+    @Column(nullable = false)
+    private ContactStatus status = ContactStatus.NEW;
 
     @Column(updatable = false)
-    private LocalDateTime createdAt; // Ngày tạo
+    private LocalDateTime createdDate = LocalDateTime.now();
 
-    @PrePersist
-    protected void onCreate() {
-        this.createdAt = LocalDateTime.now();
-    }
+    public Long getId() { return id; }
 
-    public enum ContactStatus {
-        NEW, REPLIED, CLOSED
-    }
+    public String getName() { return name; }
+    public void setName(String name) { this.name = name; }
+
+    public String getEmail() { return email; }
+    public void setEmail(String email) { this.email = email; }
+
+    public String getPhone() { return phone; }
+    public void setPhone(String phone) { this.phone = phone; }
+
+    public String getMessage() { return message; }
+    public void setMessage(String message) { this.message = message; }
+
+    public ContactStatus getStatus() { return status; }
+    public void setStatus(ContactStatus status) { this.status = status; }
+
+    public LocalDateTime getCreatedDate() { return createdDate; }
 }

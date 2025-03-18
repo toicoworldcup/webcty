@@ -1,6 +1,7 @@
 package com.example.webcty.controllers;
 
 import com.example.webcty.entities.MediaFile;
+import com.example.webcty.enums.MediaType;
 import com.example.webcty.services.MediaFileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -23,13 +24,13 @@ public class MediaFileController {
     }
 
     @GetMapping("/type/{entityType}")
-    public List<MediaFile> getByEntityType(@PathVariable String entityType) {
-        return mediaFileService.getMediaByEntityType(entityType);
+    public List<MediaFile> getByMediaType(@PathVariable MediaType mediaType) {
+        return mediaFileService.getByMediaType(mediaType);
     }
 
-    @GetMapping("/entity/{entityId}")
-    public List<MediaFile> getByEntityId(@PathVariable Long entityId) {
-        return mediaFileService.getMediaByEntityId(entityId);
+    @GetMapping("/entity/{entityType}/{entityId}")
+    public MediaFile getByMediaTypeAndTypeId(@PathVariable MediaType entityType, @PathVariable Long entityId) {
+        return mediaFileService.getByMediaTypeAndTypeId(entityType, entityId);
     }
 
     @PostMapping

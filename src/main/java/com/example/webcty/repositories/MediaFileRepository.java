@@ -1,12 +1,15 @@
 package com.example.webcty.repositories;
 
 import com.example.webcty.entities.MediaFile;
+import com.example.webcty.enums.MediaType;
 import org.springframework.data.jpa.repository.JpaRepository;
-import java.util.List;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 @Repository
 public interface MediaFileRepository extends JpaRepository<MediaFile, Long> {
-    List<MediaFile> findByEntityType(String entityType);
-    List<MediaFile> findByEntityId(Long entityId);
+    List<MediaFile> findByEntityType(MediaType entityType);
+
+    MediaFile findByEntityTypeAndEntityId(MediaType entityType, Long entityId);
 }
