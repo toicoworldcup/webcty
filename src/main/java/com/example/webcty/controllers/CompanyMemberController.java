@@ -11,8 +11,12 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/company-members")
 public class CompanyMemberController {
+    private final CompanyMemberService companyMemberService;
+
     @Autowired
-    private CompanyMemberService companyMemberService;
+    public CompanyMemberController (CompanyMemberService companyMemberService) {
+        this.companyMemberService = companyMemberService;
+    }
 
     @GetMapping
     public ResponseEntity<List<CompanyMember>> getAllCompanyMembers() {

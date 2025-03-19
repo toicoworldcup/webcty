@@ -1,42 +1,17 @@
 package com.example.webcty.services;
 
 import com.example.webcty.entities.CompanyInfo;
-import com.example.webcty.repositories.CompanyInfoRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
-public class CompanyInfoService {
-    @Autowired
-    private CompanyInfoRepository companyInfoRepository;
+public interface CompanyInfoService {
+    List<CompanyInfo> getAllCompanyInfo();
 
-    public List<CompanyInfo> getAllCompanyInfo() {
-        return companyInfoRepository.findAll();
-    }
+    CompanyInfo getCompanyInfoById(Long id);
 
-    public CompanyInfo getCompanyInfoById(Long id) {
-        return companyInfoRepository.findById(id).orElse(null);
-    }
+    CompanyInfo createCompanyInfo(CompanyInfo companyInfo);
 
-    public CompanyInfo createCompanyInfo(CompanyInfo companyInfo) {
-        return companyInfoRepository.save(companyInfo);
-    }
+    CompanyInfo updateCompanyInfo(Long id, CompanyInfo updatedCompanyInfo);
 
-    public CompanyInfo updateCompanyInfo(Long id, CompanyInfo updatedCompanyInfo) {
-        CompanyInfo companyInfo = getCompanyInfoById(id);
-        companyInfo.setSiteName(updatedCompanyInfo.getSiteName());
-        companyInfo.setSiteDescription(updatedCompanyInfo.getSiteDescription());
-        companyInfo.setContactEmail(updatedCompanyInfo.getContactEmail());
-        companyInfo.setContactPhone(updatedCompanyInfo.getContactPhone());
-        companyInfo.setContactAddress(updatedCompanyInfo.getContactAddress());
-        companyInfo.setWorkingHours(updatedCompanyInfo.getWorkingHours());
-        companyInfo.setMapEmbedUrl(updatedCompanyInfo.getMapEmbedUrl());
-        return companyInfoRepository.save(companyInfo);
-    }
-
-    public void deleteCompanyInfo(Long id) {
-        companyInfoRepository.deleteById(id);
-    }
+    void deleteCompanyInfo(Long id);
 }

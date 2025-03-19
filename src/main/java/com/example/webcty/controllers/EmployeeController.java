@@ -11,17 +11,26 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/employees")
 public class EmployeeController {
+    private final EmployeeService employeeService;
+
     @Autowired
-    private EmployeeService employeeService;
+    public  EmployeeController(EmployeeService employeeService) {
+        this.employeeService = employeeService;
+    }
 
     @GetMapping
     public ResponseEntity<List<Employee>> getAllEmployees() {
         return ResponseEntity.ok(employeeService.getAllEmployees());
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/id/{id}")
     public ResponseEntity<Employee> getEmployeeById(@PathVariable Long id) {
         return ResponseEntity.ok(employeeService.getEmployeeById(id));
+    }
+
+    @GetMapping("/username/{username}")
+    public ResponseEntity<Employee> getEmployeeByUsername(@PathVariable String username) {
+        return ResponseEntity.ok(employeeService.getEmployeeByUsername(username));
     }
 
     @PostMapping

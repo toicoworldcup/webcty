@@ -11,8 +11,12 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/company-history")
 public class CompanyHistoryController {
+    private final CompanyHistoryService companyHistoryService;
+
     @Autowired
-    private CompanyHistoryService companyHistoryService;
+    public CompanyHistoryController (CompanyHistoryService companyHistoryService) {
+        this.companyHistoryService = companyHistoryService;
+    }
 
     @GetMapping
     public ResponseEntity<List<CompanyHistory>> getAllCompanyHistory() {

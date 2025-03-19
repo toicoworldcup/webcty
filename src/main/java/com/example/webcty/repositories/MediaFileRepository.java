@@ -10,6 +10,5 @@ import java.util.List;
 @Repository
 public interface MediaFileRepository extends JpaRepository<MediaFile, Long> {
     List<MediaFile> findByEntityType(MediaType entityType);
-
     MediaFile findByEntityTypeAndEntityId(MediaType entityType, Long entityId);
 }

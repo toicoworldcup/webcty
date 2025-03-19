@@ -1,37 +1,17 @@
 package com.example.webcty.services;
 
 import com.example.webcty.entities.CompanyDetail;
-import com.example.webcty.repositories.CompanyDetailRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
-public class CompanyDetailService {
-    @Autowired
-    private CompanyDetailRepository companyDetailRepository;
+public interface CompanyDetailService {
+    List<CompanyDetail> getAllCompanyDetails();
 
-    public List<CompanyDetail> getAllCompanyDetails() {
-        return companyDetailRepository.findAll();
-    }
+    CompanyDetail getCompanyDetailById(Long id);
 
-    public CompanyDetail getCompanyDetailById(Long id) {
-        return companyDetailRepository.findById(id).orElse(null);
-    }
+    CompanyDetail createCompanyDetail(CompanyDetail companyDetail);
 
-    public CompanyDetail createCompanyDetail(CompanyDetail companyDetail) {
-        return companyDetailRepository.save(companyDetail);
-    }
+    CompanyDetail updateCompanyDetail(Long id, CompanyDetail updatedCompanyDetail);
 
-    public CompanyDetail updateCompanyDetail(Long id, CompanyDetail updatedCompanyDetail) {
-        CompanyDetail companyDetail = getCompanyDetailById(id);
-        companyDetail.setTitle(updatedCompanyDetail.getTitle());
-        companyDetail.setContent(updatedCompanyDetail.getContent());
-        return companyDetailRepository.save(companyDetail);
-    }
-
-    public void deleteCompanyDetail(Long id) {
-        companyDetailRepository.deleteById(id);
-    }
+    void deleteCompanyDetail(Long id);
 }

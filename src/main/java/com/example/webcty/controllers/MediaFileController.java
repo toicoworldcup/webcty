@@ -12,8 +12,12 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/media-files")
 public class MediaFileController {
+    private final MediaFileService mediaFileService;
+
     @Autowired
-    private MediaFileService mediaFileService;
+    public  MediaFileController(MediaFileService mediaFileService) {
+        this.mediaFileService = mediaFileService;
+    }
 
     @GetMapping
     public ResponseEntity<List<MediaFile>> getAllMediaFiles() {
@@ -21,13 +25,13 @@ public class MediaFileController {
     }
 
     @GetMapping("/type/{entityType}")
-    public ResponseEntity<List<MediaFile>> getByMediaType(@PathVariable MediaType mediaType) {
-        return ResponseEntity.ok(mediaFileService.getByMediaType(mediaType));
+    public ResponseEntity<List<MediaFile>> getByEntityType(@PathVariable MediaType entityType) {
+        return ResponseEntity.ok(mediaFileService.getByEntityType(entityType));
     }
 
-    @GetMapping("/entity/{entityType}/{entityId}")
-    public ResponseEntity<MediaFile> getByMediaTypeAndTypeId(@PathVariable MediaType entityType, @PathVariable Long entityId) {
-        return ResponseEntity.ok(mediaFileService.getByMediaTypeAndTypeId(entityType, entityId));
+    @GetMapping("/type/{entityType}/{entityId}")
+    public ResponseEntity<MediaFile> getByEntityTypeAndEntityId(@PathVariable MediaType entityType, @PathVariable Long entityId) {
+        return ResponseEntity.ok(mediaFileService.getByEntityTypeAndEntityId(entityType, entityId));
     }
 
     @PostMapping

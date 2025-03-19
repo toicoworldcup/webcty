@@ -11,8 +11,12 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/customer-contacts")
 public class CustomerContactController {
+    private final CustomerContactService customerContactService;
+
     @Autowired
-    private CustomerContactService customerContactService;
+    public CustomerContactController(CustomerContactService customerContactService) {
+        this.customerContactService = customerContactService;
+    }
 
     @GetMapping
     public ResponseEntity<List<CustomerContact>> getAllCustomerContacts() {

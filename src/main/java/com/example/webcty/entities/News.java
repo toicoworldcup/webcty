@@ -3,7 +3,6 @@ package com.example.webcty.entities;
 import com.example.webcty.bases.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
-import java.util.List;
 
 @Entity
 @Table(name = "news")

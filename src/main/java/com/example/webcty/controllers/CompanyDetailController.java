@@ -11,8 +11,12 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/company-details")
 public class CompanyDetailController {
+    private final CompanyDetailService companyDetailService;
+
     @Autowired
-    private CompanyDetailService companyDetailService;
+    public CompanyDetailController(CompanyDetailService companyDetailService) {
+        this.companyDetailService = companyDetailService;
+    }
 
     @GetMapping
     public ResponseEntity<List<CompanyDetail>> getAllCompanyDetails() {
