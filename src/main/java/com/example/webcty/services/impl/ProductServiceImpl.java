@@ -3,6 +3,7 @@ package com.example.webcty.services.impl;
 import com.example.webcty.entities.Product;
 import com.example.webcty.repositories.ProductRepository;
 import com.example.webcty.services.ProductService;
+import com.example.webcty.utils.SlugUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,7 +34,7 @@ public class ProductServiceImpl implements ProductService {
         Product product = getProductById(id);
         product.setTitle(updatedProduct.getTitle());
         product.setContent(updatedProduct.getContent());
-        product.setSlug(updatedProduct.getSlug());
+        product.setSlug(SlugUtil.generateSlug(updatedProduct.getTitle()));
         return productRepository.save(product);
     }
 

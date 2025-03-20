@@ -39,11 +39,6 @@ public class MediaFileController {
         return ResponseEntity.ok(mediaFileService.createMediaFile(mediaFile));
     }
 
-    @PutMapping("/{entityType}/{entityId}")
-    public ResponseEntity<MediaFile> updateMediaFile(@PathVariable MediaType entityType, @PathVariable Long entityId, @RequestBody MediaFile updatedMediaFile) {
-        return ResponseEntity.ok(mediaFileService.updateMediaFile(entityType, entityId, updatedMediaFile));
-    }
-
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteMediaFile(@PathVariable Long id) {
         mediaFileService.deleteMediaFile(id);

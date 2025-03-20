@@ -1,4 +1,6 @@
 package com.example.webcty.bases;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.data.annotation.CreatedBy;
@@ -15,6 +17,7 @@ import java.time.LocalDateTime;
 public class BaseEntity {
     @CreatedDate
     @Column(name = "created_date", updatable = false)
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "UTC")
     private LocalDateTime createdDate;
 
     @CreatedBy
@@ -23,6 +26,7 @@ public class BaseEntity {
 
     @LastModifiedDate
     @Column(name = "modified_date")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "UTC")
     private LocalDateTime modifiedDate;
 
     @LastModifiedBy

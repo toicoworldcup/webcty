@@ -3,6 +3,7 @@ package com.example.webcty.services.impl;
 import com.example.webcty.entities.News;
 import com.example.webcty.repositories.NewsRepository;
 import com.example.webcty.services.NewsService;
+import com.example.webcty.utils.SlugUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,7 +34,7 @@ public class NewsServiceImpl implements NewsService {
         News news = getNewsById(id);
         news.setTitle(updatedNews.getTitle());
         news.setContent(updatedNews.getContent());
-        news.setSlug(updatedNews.getSlug());
+        news.setSlug(SlugUtil.generateSlug(updatedNews.getTitle()));
         return newsRepository.save(news);
     }
 

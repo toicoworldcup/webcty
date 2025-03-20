@@ -35,19 +35,6 @@ public class MediaFileServiceImpl implements MediaFileService {
     }
 
     @Override
-    public MediaFile updateMediaFile(MediaType entityType, Long entityId, MediaFile updatedMediaFile) {
-        MediaFile mediaFile = getByEntityTypeAndEntityId(entityType, entityId);
-        mediaFile.setEntityType(updatedMediaFile.getEntityType());
-        mediaFile.setEntityId(updatedMediaFile.getEntityId());
-        mediaFile.setUrl(updatedMediaFile.getUrl());
-        mediaFile.setFileName(updatedMediaFile.getFileName());
-        mediaFile.setFilePath(updatedMediaFile.getFilePath());
-        mediaFile.setFileType(updatedMediaFile.getFileType());
-        mediaFile.setFileSize(updatedMediaFile.getFileSize());
-        return mediaFileRepository.save(mediaFile);
-    }
-
-    @Override
     public void deleteMediaFile(Long id) {
         mediaFileRepository.deleteById(id);
     }

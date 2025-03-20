@@ -1,6 +1,7 @@
 package com.example.webcty.entities;
 
 import com.example.webcty.bases.BaseEntity;
+import com.example.webcty.utils.SlugUtil;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -21,6 +22,22 @@ public class Product extends BaseEntity {
 
     @Column(unique = true, nullable = false, length = 255)
     private String slug;
+
+    @PrePersist
+    @PreUpdate
+    public void generateSlug() {
+        if (title != null && !title.isEmpty()) {
+            this.slug = SlugUtil.generateSlug(title);
+        }
+    }
+
+    @PostPersist
+    @PostUpdate
+    public void updateSlugWithId() {
+        if (this.slug != null && !this.slug.endsWith("-" + this.id)) {
+            this.slug = this.slug + "-" + this.id;
+        }
+    }
 
     public Long getId() { return id; }
 

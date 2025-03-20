@@ -1,5 +1,6 @@
 package com.example.webcty.entities;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.*;
 import java.time.LocalDateTime;
@@ -32,6 +33,7 @@ public class CustomerContact {
     private ContactStatus status = ContactStatus.NEW;
 
     @Column(updatable = false)
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "UTC")
     private LocalDateTime createdDate = LocalDateTime.now();
 
     public Long getId() { return id; }

@@ -14,7 +14,5 @@ public interface MediaFileService {
 
     MediaFile createMediaFile(MediaFile mediaFile);
 
-    MediaFile updateMediaFile(MediaType entityType, Long entityId, MediaFile updatedMediaFile);
-
     void deleteMediaFile(Long id);
 }

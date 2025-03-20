@@ -36,10 +36,10 @@ public class MediaFile extends BaseEntity {
     public void setEntityType(MediaType entityType) { this.entityType = entityType; }
 
     public Long getEntityId() { return entityId; }
-    public void setEntityId(Long entityId) { this.entityType = entityType; }
+    public void setEntityId(Long entityId) { this.entityId = entityId; }
 
     public String getUrl() { return url; }
-    public void setUrl(String url) { this.url = this.url; }
+    public void setUrl(String url) { this.url = url; }
 
     public String getFileName() { return fileName; }
     public void setFileName(String fileName) { this.fileName = fileName; }

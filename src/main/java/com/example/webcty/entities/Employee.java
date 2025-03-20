@@ -1,5 +1,6 @@
 package com.example.webcty.entities;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.*;
 import java.time.LocalDateTime;
@@ -32,8 +33,11 @@ public class Employee {
     private EmployeeRole role = EmployeeRole.EDITOR;
 
     @Column(updatable = false)
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "UTC")
     private LocalDateTime createdDate = LocalDateTime.now();
 
+    @Column(updatable = false)
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "UTC")
     private LocalDateTime updatedDate = LocalDateTime.now();
 
     @PreUpdate
@@ -46,7 +50,7 @@ public class Employee {
     public String getUsername() { return username; }
 
     public String getEmail() { return email; }
-    public void setEmail(String content) { this.email = email; }
+    public void setEmail(String email) { this.email = email; }
 
     public String getEmCode() { return emCode; }
 
