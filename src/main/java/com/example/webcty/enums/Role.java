@@ -1,6 +1,6 @@
 package com.example.webcty.enums;
 
-public enum EmployeeRole {
+public enum Role {
     ADMIN,
     EDITOR
 }

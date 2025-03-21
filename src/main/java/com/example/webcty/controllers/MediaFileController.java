@@ -5,6 +5,7 @@ import com.example.webcty.enums.MediaType;
 import com.example.webcty.services.MediaFileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,6 +20,7 @@ public class MediaFileController {
         this.mediaFileService = mediaFileService;
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN', 'EDITOR')")
     @GetMapping
     public ResponseEntity<List<MediaFile>> getAllMediaFiles() {
         return ResponseEntity.ok(mediaFileService.getAllMediaFiles());
@@ -34,11 +36,13 @@ public class MediaFileController {
         return ResponseEntity.ok(mediaFileService.getByEntityTypeAndEntityId(entityType, entityId));
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN', 'EDITOR')")
     @PostMapping
     public ResponseEntity<MediaFile> createMediaFile(@RequestBody MediaFile mediaFile) {
         return ResponseEntity.ok(mediaFileService.createMediaFile(mediaFile));
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN', 'EDITOR')")
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteMediaFile(@PathVariable Long id) {
         mediaFileService.deleteMediaFile(id);
