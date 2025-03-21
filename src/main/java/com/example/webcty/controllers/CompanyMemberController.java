@@ -4,6 +4,7 @@ import com.example.webcty.entities.CompanyMember;
 import com.example.webcty.services.CompanyMemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -28,16 +29,19 @@ public class CompanyMemberController {
         return ResponseEntity.ok(companyMemberService.getCompanyMemberById(id));
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN', 'EDITOR')")
     @PostMapping
     public ResponseEntity<CompanyMember> createCompanyMember(@RequestBody CompanyMember companyMember) {
         return ResponseEntity.ok(companyMemberService.createCompanyMember(companyMember));
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN', 'EDITOR')")
     @PutMapping("/{id}")
     public ResponseEntity<CompanyMember> updateCompanyMember(@PathVariable Long id, @RequestBody CompanyMember updateCompanyMember) {
         return ResponseEntity.ok(companyMemberService.updateCompanyMember(id, updateCompanyMember));
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN', 'EDITOR')")
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteCompanyMember(@PathVariable Long id) {
         companyMemberService.deleteCompanyMember(id);
