@@ -1,18 +1,19 @@
 package com.example.webcty.services;
 
-import com.example.webcty.entities.MediaFile;
+import com.example.webcty.dto.request.MediaFileRequest;
+import com.example.webcty.dto.response.MediaFileResponse;
 import com.example.webcty.enums.MediaType;
 
 import java.util.List;
 
 public interface MediaFileService {
-    List<MediaFile> getAllMediaFiles();
+    List<MediaFileResponse> getAllMediaFiles();
 
-    List<MediaFile> getByEntityType(MediaType entityType);
+    List<MediaFileResponse> getMediaFileByEntityType(MediaType entityType);
 
-    MediaFile getByEntityTypeAndEntityId(MediaType entityType, Long entityId);
+    MediaFileResponse getMediaFileByEntityTypeAndEntityId(MediaType entityType, Long entityId);
 
-    MediaFile createMediaFile(MediaFile mediaFile);
+    MediaFileResponse createMediaFile(MediaFileRequest request);
 
     void deleteMediaFile(Long id);
 }

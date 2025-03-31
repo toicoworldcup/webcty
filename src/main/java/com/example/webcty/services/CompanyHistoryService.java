@@ -1,17 +1,18 @@
 package com.example.webcty.services;
 
-import com.example.webcty.entities.CompanyHistory;
+import com.example.webcty.dto.request.CompanyHistoryRequest;
+import com.example.webcty.dto.response.CompanyHistoryResponse;
 
 import java.util.List;
 
 public interface CompanyHistoryService {
-    List<CompanyHistory> getAllCompanyHistory();
+    List<CompanyHistoryResponse> getAllCompanyHistory();
 
-    CompanyHistory getCompanyHistoryById(Long id);
+    CompanyHistoryResponse getCompanyHistoryById(Long id);
 
-    CompanyHistory createCompanyHistory(CompanyHistory companyHistory);
+    CompanyHistoryResponse createCompanyHistory(CompanyHistoryRequest request);
 
-    CompanyHistory updateCompanyHistory(Long id, CompanyHistory updatedCompanyHistory);
+    CompanyHistoryResponse updateCompanyHistory(Long id, CompanyHistoryRequest request);
 
     void deleteCompanyHistory(Long id);
 }

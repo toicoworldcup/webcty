@@ -1,6 +1,4 @@
-package com.example.webcty.security;
-import com.example.webcty.entities.Employee;
-import com.example.webcty.enums.Role;
+package com.example.webcty.config.security;
 import com.example.webcty.repositories.EmployeeRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

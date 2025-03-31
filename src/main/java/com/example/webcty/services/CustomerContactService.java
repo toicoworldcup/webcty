@@ -1,17 +1,18 @@
 package com.example.webcty.services;
 
-import com.example.webcty.entities.CustomerContact;
+import com.example.webcty.dto.request.CustomerContactRequest;
+import com.example.webcty.dto.response.CustomerContactResponse;
 
 import java.util.List;
 
 public interface CustomerContactService {
-    List<CustomerContact> getAllCustomerContacts();
+    List<CustomerContactResponse> getAllCustomerContacts();
 
-    CustomerContact getCustomerContactById(Long id);
+    CustomerContactResponse getCustomerContactById(Long id);
 
-    CustomerContact createCustomerContact(CustomerContact customerContact);
+    CustomerContactResponse createCustomerContact(CustomerContactRequest request);
 
-    CustomerContact updateCustomerContact(Long id, CustomerContact updatedCustomerContact);
+    CustomerContactResponse updateCustomerContact(Long id, CustomerContactRequest request);
 
     void deleteCustomerContact(Long id);
 }

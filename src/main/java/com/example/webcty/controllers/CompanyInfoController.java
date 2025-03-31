@@ -1,6 +1,7 @@
 package com.example.webcty.controllers;
 
-import com.example.webcty.entities.CompanyInfo;
+import com.example.webcty.dto.request.CompanyInfoRequest;
+import com.example.webcty.dto.response.CompanyInfoResponse;
 import com.example.webcty.services.CompanyInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -20,25 +21,25 @@ public class CompanyInfoController {
     }
 
     @GetMapping
-    public ResponseEntity<List<CompanyInfo>> getAllCompanyInfo() {
+    public ResponseEntity<List<CompanyInfoResponse>> getAllCompanyInfo() {
         return ResponseEntity.ok(companyInfoService.getAllCompanyInfo());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<CompanyInfo> getCompanyInfoById(@PathVariable Long id) {
+    public ResponseEntity<CompanyInfoResponse> getCompanyInfoById(@PathVariable Long id) {
         return ResponseEntity.ok(companyInfoService.getCompanyInfoById(id));
     }
 
     @PreAuthorize("hasAnyRole('ADMIN', 'EDITOR')")
     @PostMapping
-    public ResponseEntity<CompanyInfo> createCompanyInfo(@RequestBody CompanyInfo companyInfo) {
-        return ResponseEntity.ok(companyInfoService.createCompanyInfo(companyInfo));
+    public ResponseEntity<CompanyInfoResponse> createCompanyInfo(@RequestBody CompanyInfoRequest request) {
+        return ResponseEntity.ok(companyInfoService.createCompanyInfo(request));
     }
 
     @PreAuthorize("hasAnyRole('ADMIN', 'EDITOR')")
     @PutMapping("/{id}")
-    public ResponseEntity<CompanyInfo> updateCompanyInfo(@PathVariable Long id, @RequestBody CompanyInfo updateCompanyInfo) {
-        return ResponseEntity.ok(companyInfoService.updateCompanyInfo(id, updateCompanyInfo));
+    public ResponseEntity<CompanyInfoResponse> updateCompanyInfo(@PathVariable Long id, @RequestBody CompanyInfoRequest request) {
+        return ResponseEntity.ok(companyInfoService.updateCompanyInfo(id, request));
     }
 
     @PreAuthorize("hasAnyRole('ADMIN', 'EDITOR')")

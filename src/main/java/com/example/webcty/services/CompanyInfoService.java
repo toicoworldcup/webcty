@@ -1,17 +1,18 @@
 package com.example.webcty.services;
 
-import com.example.webcty.entities.CompanyInfo;
+import com.example.webcty.dto.request.CompanyInfoRequest;
+import com.example.webcty.dto.response.CompanyInfoResponse;
 
 import java.util.List;
 
 public interface CompanyInfoService {
-    List<CompanyInfo> getAllCompanyInfo();
+    List<CompanyInfoResponse> getAllCompanyInfo();
 
-    CompanyInfo getCompanyInfoById(Long id);
+    CompanyInfoResponse getCompanyInfoById(Long id);
 
-    CompanyInfo createCompanyInfo(CompanyInfo companyInfo);
+    CompanyInfoResponse createCompanyInfo(CompanyInfoRequest request);
 
-    CompanyInfo updateCompanyInfo(Long id, CompanyInfo updatedCompanyInfo);
+    CompanyInfoResponse updateCompanyInfo(Long id, CompanyInfoRequest request);
 
     void deleteCompanyInfo(Long id);
 }
