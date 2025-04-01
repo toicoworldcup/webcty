@@ -1,6 +1,7 @@
 package com.example.webcty.controllers;
 
-import com.example.webcty.entities.CustomerContact;
+import com.example.webcty.dto.request.CustomerContactRequest;
+import com.example.webcty.dto.response.CustomerContactResponse;
 import com.example.webcty.services.CustomerContactService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -20,25 +21,25 @@ public class CustomerContactController {
     }
 
     @GetMapping
-    public ResponseEntity<List<CustomerContact>> getAllCustomerContacts() {
+    public ResponseEntity<List<CustomerContactResponse>> getAllCustomerContacts() {
         return ResponseEntity.ok(customerContactService.getAllCustomerContacts());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<CustomerContact> getCustomerContactById(@PathVariable Long id) {
+    public ResponseEntity<CustomerContactResponse> getCustomerContactById(@PathVariable Long id) {
         return ResponseEntity.ok(customerContactService.getCustomerContactById(id));
     }
 
     @PreAuthorize("hasAnyRole('ADMIN', 'EDITOR')")
     @PostMapping
-    public ResponseEntity<CustomerContact> createCustomerContact(@RequestBody CustomerContact customerContact) {
-        return ResponseEntity.ok(customerContactService.createCustomerContact(customerContact));
+    public ResponseEntity<CustomerContactResponse> createCustomerContact(@RequestBody CustomerContactRequest request) {
+        return ResponseEntity.ok(customerContactService.createCustomerContact(request));
     }
 
     @PreAuthorize("hasAnyRole('ADMIN', 'EDITOR')")
     @PutMapping("/{id}")
-    public ResponseEntity<CustomerContact> updateCustomerContact(@PathVariable Long id, @RequestBody CustomerContact updateCustomerContact) {
-        return ResponseEntity.ok(customerContactService.updateCustomerContact(id, updateCustomerContact));
+    public ResponseEntity<CustomerContactResponse> updateCustomerContact(@PathVariable Long id, @RequestBody CustomerContactRequest request) {
+        return ResponseEntity.ok(customerContactService.updateCustomerContact(id, request));
     }
 
     @PreAuthorize("hasAnyRole('ADMIN', 'EDITOR')")

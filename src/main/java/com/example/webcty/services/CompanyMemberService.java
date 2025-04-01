@@ -1,17 +1,18 @@
 package com.example.webcty.services;
 
-import com.example.webcty.entities.CompanyMember;
+import com.example.webcty.dto.request.CompanyMemberRequest;
+import com.example.webcty.dto.response.CompanyMemberResponse;
 
 import java.util.List;
 
 public interface CompanyMemberService {
-    List<CompanyMember> getAllCompanyMembers();
+    List<CompanyMemberResponse> getAllCompanyMembers();
 
-    CompanyMember getCompanyMemberById(Long id);
+    CompanyMemberResponse getCompanyMemberById(Long id);
 
-    CompanyMember createCompanyMember(CompanyMember companyMember);
+    CompanyMemberResponse createCompanyMember(CompanyMemberRequest request);
 
-    CompanyMember updateCompanyMember(Long id, CompanyMember updatedCompanyMember);
+    CompanyMemberResponse updateCompanyMember(Long id, CompanyMemberRequest request);
 
     void deleteCompanyMember(Long id);
 }

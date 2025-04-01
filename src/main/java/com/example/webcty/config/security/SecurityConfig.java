@@ -1,7 +1,6 @@
-package com.example.webcty.security;
+package com.example.webcty.config.security;
 
 import com.example.webcty.repositories.EmployeeRepository;
-import com.example.webcty.entities.Employee;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -37,7 +36,7 @@ public class SecurityConfig {
                         .requestMatchers("/api/customer-contacts").permitAll()
                         .requestMatchers("/api/customer-contacts/{id}").permitAll()
                         .requestMatchers("/api/media-files").permitAll()
-                        .requestMatchers("/api/media-files//type/{entityType}").permitAll()
+                        .requestMatchers("/api/media-files/type/{entityType}").permitAll()
                         .requestMatchers("/type/{entityType}/{entityId}").permitAll()
                         .requestMatchers("/api/news").permitAll()
                         .requestMatchers("/api/news/{id}").permitAll()
@@ -45,8 +44,8 @@ public class SecurityConfig {
                         .requestMatchers("/api/products/{id}").permitAll()
                         .anyRequest().authenticated()
                 )
-                .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))  // Cấu hình stateless
-                .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);  // Thêm JwtFilter trước filter UsernamePasswordAuthenticationFilter
+                .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }
@@ -55,11 +54,11 @@ public class SecurityConfig {
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
         authProvider.setUserDetailsService(userDetailsService);
         authProvider.setPasswordEncoder(passwordEncoder());
-        return new ProviderManager(List.of(authProvider));  // Sử dụng ProviderManager với authProvider
+        return new ProviderManager(List.of(authProvider));
     }
     @Bean
     public UserDetailsService userDetailsService(EmployeeRepository employeeRepository) {
-        return username -> employeeRepository.findByUsername(username)  // Tìm người dùng theo username
+        return username -> employeeRepository.findByUsername(username)
                 .orElseThrow(() -> new RuntimeException("User not found"));
     }
     @Bean

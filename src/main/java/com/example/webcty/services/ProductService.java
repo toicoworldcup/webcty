@@ -1,17 +1,18 @@
 package com.example.webcty.services;
 
-import com.example.webcty.entities.Product;
+import com.example.webcty.dto.request.ProductRequest;
+import com.example.webcty.dto.response.ProductResponse;
 
 import java.util.List;
 
 public interface ProductService {
-    List<Product> getAllProducts();
+    List<ProductResponse> getAllProducts();
 
-    Product getProductById(Long id);
+    ProductResponse getProductById(Long id);
 
-    Product createProduct(Product product);
+    ProductResponse createProduct(ProductRequest request);
 
-    Product updateProduct(Long id, Product updatedProduct);
+    ProductResponse updateProduct(Long id, ProductRequest request);
 
     void deleteProduct(Long id);
 }

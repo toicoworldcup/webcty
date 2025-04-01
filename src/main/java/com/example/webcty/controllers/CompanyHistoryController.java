@@ -1,6 +1,7 @@
 package com.example.webcty.controllers;
 
-import com.example.webcty.entities.CompanyHistory;
+import com.example.webcty.dto.request.CompanyHistoryRequest;
+import com.example.webcty.dto.response.CompanyHistoryResponse;
 import com.example.webcty.services.CompanyHistoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -20,25 +21,25 @@ public class CompanyHistoryController {
     }
 
     @GetMapping
-    public ResponseEntity<List<CompanyHistory>> getAllCompanyHistory() {
+    public ResponseEntity<List<CompanyHistoryResponse>> getAllCompanyHistory() {
         return ResponseEntity.ok(companyHistoryService.getAllCompanyHistory());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<CompanyHistory> getCompanyHistoryById(@PathVariable Long id) {
+    public ResponseEntity<CompanyHistoryResponse> getCompanyHistoryById(@PathVariable Long id) {
         return ResponseEntity.ok(companyHistoryService.getCompanyHistoryById(id));
     }
 
     @PreAuthorize("hasAnyRole('ADMIN', 'EDITOR')")
     @PostMapping
-    public ResponseEntity<CompanyHistory> createCompanyHistory(@RequestBody CompanyHistory companyHistory) {
-        return ResponseEntity.ok(companyHistoryService.createCompanyHistory(companyHistory));
+    public ResponseEntity<CompanyHistoryResponse> createCompanyHistory(@RequestBody CompanyHistoryRequest request) {
+        return ResponseEntity.ok(companyHistoryService.createCompanyHistory(request));
     }
 
     @PreAuthorize("hasAnyRole('ADMIN', 'EDITOR')")
     @PutMapping("/{id}")
-    public ResponseEntity<CompanyHistory> updateCompanyHistory(@PathVariable Long id, @RequestBody CompanyHistory updateCompanyHistory) {
-        return ResponseEntity.ok(companyHistoryService.updateCompanyHistory(id, updateCompanyHistory));
+    public ResponseEntity<CompanyHistoryResponse> updateCompanyHistory(@PathVariable Long id, @RequestBody CompanyHistoryRequest request) {
+        return ResponseEntity.ok(companyHistoryService.updateCompanyHistory(id, request));
     }
 
     @PreAuthorize("hasAnyRole('ADMIN', 'EDITOR')")

@@ -1,4 +1,4 @@
-package com.example.webcty.security;
+package com.example.webcty.config.security;
 
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
