@@ -21,7 +21,6 @@ public class MediaFileController {
         this.mediaFileService = mediaFileService;
     }
 
-    @PreAuthorize("hasAnyRole('ADMIN', 'EDITOR')")
     @GetMapping
     public ResponseEntity<List<MediaFileResponse>> getAllMediaFiles() {
         return ResponseEntity.ok(mediaFileService.getAllMediaFiles());

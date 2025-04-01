@@ -15,6 +15,7 @@ import com.example.webcty.enums.Role;
 
 @Entity
 @Table(name = "employees")
+@NoArgsConstructor
 @AllArgsConstructor
 public class Employee implements UserDetails {
     @Id
@@ -44,20 +45,6 @@ public class Employee implements UserDetails {
     @Column(updatable = false)
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "UTC")
     private LocalDateTime updatedDate = LocalDateTime.now();
-
-    public Employee() {
-    }
-
-    public Employee(LocalDateTime createdDate, String email, String emCode, Long id, String password, Role role, LocalDateTime updatedDate, String username) {
-        this.createdDate = createdDate;
-        this.email = email;
-        this.emCode = emCode;
-        this.id = id;
-        this.password = password;
-        this.role = role;
-        this.updatedDate = updatedDate;
-        this.username = username;
-    }
 
     public Employee(String email, String emCode, String password, Role role, String username) {
         this.email = email;
@@ -103,40 +90,32 @@ public class Employee implements UserDetails {
     public Long getId() { return id; }
 
     public String getUsername() { return username; }
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
     public String getEmail() { return email; }
     public void setEmail(String email) { this.email = email; }
 
     public String getEmCode() { return emCode; }
-
-    public void setCreatedDate(LocalDateTime createdDate) {
-        this.createdDate = createdDate;
-    }
-
     public void setEmCode(String emCode) {
         this.emCode = emCode;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public void setRole(Role role) {
-        this.role = role;
-    }
-
-    public void setUpdatedDate(LocalDateTime updatedDate) {
-        this.updatedDate = updatedDate;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
     }
 
     public String getPassword() { return password; }
     public void setPassword(String password) { this.password = password; }
 
     public Role getRole() { return role; }
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
+    public void setCreatedDate(LocalDateTime createdDate) {
+        this.createdDate = createdDate;
+    }
+    public void setUpdatedDate(LocalDateTime updatedDate) {
+        this.updatedDate = updatedDate;
+    }
 
     public LocalDateTime getCreatedDate() { return createdDate; }
     public LocalDateTime getUpdatedDate() { return updatedDate; }
