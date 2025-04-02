@@ -33,7 +33,7 @@ public class CompanyHistory extends BaseEntity {
     public void setYear(Integer year) { this.year = year; }
 
     public String getDescription() { return description; }
-    public void setDescription(String description) { this.description = this.description; }
+    public void setDescription(String description) { this.description = description; }
 
     public Integer getOrderIndex() { return orderIndex; }
     public void setOrderIndex(Integer orderIndex) { this.orderIndex = orderIndex; }

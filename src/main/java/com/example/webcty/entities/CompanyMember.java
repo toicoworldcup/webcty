@@ -36,7 +36,7 @@ public class CompanyMember extends BaseEntity {
     public void setPosition(String position) { this.position = position; }
 
     public String getBio() { return bio; }
-    public void setBio(String bio) { this.bio = this.bio; }
+    public void setBio(String bio) { this.bio = bio; }
 
     public String getEmail() { return email; }
     public void setEmail(String email) { this.email = email; }
