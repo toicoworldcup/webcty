@@ -1,6 +1,6 @@
 package com.example.webcty.entities;
 
-import com.example.webcty.bases.BaseEntity;
+import com.example.webcty.entities.bases.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -36,7 +36,7 @@ public class CompanyMember extends BaseEntity {
     public void setPosition(String position) { this.position = position; }
 
     public String getBio() { return bio; }
-    public void setBio(String bio) { this.bio = bio; }
+    public void setBio(String bio) { this.bio = this.bio; }
 
     public String getEmail() { return email; }
     public void setEmail(String email) { this.email = email; }

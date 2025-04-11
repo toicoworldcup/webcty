@@ -1,9 +1,11 @@
 package com.example.webcty.controllers;
 
-import com.example.webcty.entities.CompanyMember;
+import com.example.webcty.dto.request.CompanyMemberRequest;
+import com.example.webcty.dto.response.CompanyMemberResponse;
 import com.example.webcty.services.CompanyMemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,25 +21,28 @@ public class CompanyMemberController {
     }
 
     @GetMapping
-    public ResponseEntity<List<CompanyMember>> getAllCompanyMembers() {
+    public ResponseEntity<List<CompanyMemberResponse>> getAllCompanyMembers() {
         return ResponseEntity.ok(companyMemberService.getAllCompanyMembers());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<CompanyMember> getCompanyMemberById(@PathVariable Long id) {
+    public ResponseEntity<CompanyMemberResponse> getCompanyMemberById(@PathVariable Long id) {
         return ResponseEntity.ok(companyMemberService.getCompanyMemberById(id));
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN', 'EDITOR')")
     @PostMapping
-    public ResponseEntity<CompanyMember> createCompanyMember(@RequestBody CompanyMember companyMember) {
-        return ResponseEntity.ok(companyMemberService.createCompanyMember(companyMember));
+    public ResponseEntity<CompanyMemberResponse> createCompanyMember(@RequestBody CompanyMemberRequest request) {
+        return ResponseEntity.ok(companyMemberService.createCompanyMember(request));
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN', 'EDITOR')")
     @PutMapping("/{id}")
-    public ResponseEntity<CompanyMember> updateCompanyMember(@PathVariable Long id, @RequestBody CompanyMember updateCompanyMember) {
-        return ResponseEntity.ok(companyMemberService.updateCompanyMember(id, updateCompanyMember));
+    public ResponseEntity<CompanyMemberResponse> updateCompanyMember(@PathVariable Long id, @RequestBody CompanyMemberRequest request) {
+        return ResponseEntity.ok(companyMemberService.updateCompanyMember(id, request));
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN', 'EDITOR')")
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteCompanyMember(@PathVariable Long id) {
         companyMemberService.deleteCompanyMember(id);

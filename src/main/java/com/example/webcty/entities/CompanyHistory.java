@@ -1,6 +1,6 @@
 package com.example.webcty.entities;
 
-import com.example.webcty.bases.BaseEntity;
+import com.example.webcty.entities.bases.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -33,7 +33,7 @@ public class CompanyHistory extends BaseEntity {
     public void setYear(Integer year) { this.year = year; }
 
     public String getDescription() { return description; }
-    public void setDescription(String description) { this.description = description; }
+    public void setDescription(String description) { this.description = this.description; }
 
     public Integer getOrderIndex() { return orderIndex; }
     public void setOrderIndex(Integer orderIndex) { this.orderIndex = orderIndex; }

@@ -1,17 +1,18 @@
 package com.example.webcty.services;
 
-import com.example.webcty.entities.News;
+import com.example.webcty.dto.request.NewsRequest;
+import com.example.webcty.dto.response.NewsResponse;
 
 import java.util.List;
 
 public interface NewsService {
-    List<News> getAllNews();
+    List<NewsResponse> getAllNews();
 
-    News getNewsById(Long id);
+    NewsResponse getNewsById(Long id);
 
-    News createNews(News news);
+    NewsResponse createNews(NewsRequest request);
 
-    News updateNews(Long id, News updatedNews);
+    NewsResponse updateNews(Long id, NewsRequest request);
 
     void deleteNews(Long id);
 }

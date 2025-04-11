@@ -1,6 +1,6 @@
 package com.example.webcty.entities;
 
-import com.example.webcty.bases.BaseEntity;
+import com.example.webcty.entities.bases.BaseEntity;
 import com.example.webcty.utils.SlugUtil;
 import jakarta.persistence.*;
 import lombok.*;

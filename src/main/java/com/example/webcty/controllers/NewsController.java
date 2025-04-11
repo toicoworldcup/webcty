@@ -1,9 +1,11 @@
 package com.example.webcty.controllers;
 
-import com.example.webcty.entities.News;
+import com.example.webcty.dto.request.NewsRequest;
+import com.example.webcty.dto.response.NewsResponse;
 import com.example.webcty.services.NewsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,25 +21,28 @@ public class NewsController {
     }
 
     @GetMapping
-    public ResponseEntity<List<News>> getAllNews() {
+    public ResponseEntity<List<NewsResponse>> getAllNews() {
         return ResponseEntity.ok(newsService.getAllNews());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<News> getNewsById(@PathVariable Long id) {
+    public ResponseEntity<NewsResponse> getNewsById(@PathVariable Long id) {
         return ResponseEntity.ok(newsService.getNewsById(id));
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN', 'EDITOR')")
     @PostMapping
-    public ResponseEntity<News> createNews(@RequestBody News news) {
-        return ResponseEntity.ok(newsService.createNews(news));
+    public ResponseEntity<NewsResponse> createNews(@RequestBody NewsRequest request) {
+        return ResponseEntity.ok(newsService.createNews(request));
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN', 'EDITOR')")
     @PutMapping("/{id}")
-    public ResponseEntity<News> updateNews(@PathVariable Long id, @RequestBody News updateNews) {
-        return ResponseEntity.ok(newsService.updateNews(id, updateNews));
+    public ResponseEntity<NewsResponse> updateNews(@PathVariable Long id, @RequestBody NewsRequest request) {
+        return ResponseEntity.ok(newsService.updateNews(id, request));
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN', 'EDITOR')")
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteNews(@PathVariable Long id) {
         newsService.deleteNews(id);
