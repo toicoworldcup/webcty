@@ -5,7 +5,6 @@ import com.example.webcty.dto.response.CustomerContactResponse;
 import com.example.webcty.services.CustomerContactService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -30,19 +29,16 @@ public class CustomerContactController {
         return ResponseEntity.ok(customerContactService.getCustomerContactById(id));
     }
 
-    @PreAuthorize("hasAnyRole('ADMIN', 'EDITOR')")
     @PostMapping
-    public ResponseEntity<CustomerContactResponse> createCustomerContact(@RequestBody CustomerContactRequest request) {
-        return ResponseEntity.ok(customerContactService.createCustomerContact(request));
+    public ResponseEntity<CustomerContactResponse> createCustomerContact(@RequestBody CustomerContactRequest customerContact) {
+        return ResponseEntity.ok(customerContactService.createCustomerContact(customerContact));
     }
 
-    @PreAuthorize("hasAnyRole('ADMIN', 'EDITOR')")
     @PutMapping("/{id}")
-    public ResponseEntity<CustomerContactResponse> updateCustomerContact(@PathVariable Long id, @RequestBody CustomerContactRequest request) {
-        return ResponseEntity.ok(customerContactService.updateCustomerContact(id, request));
+    public ResponseEntity<CustomerContactResponse> updateCustomerContact(@PathVariable Long id, @RequestBody CustomerContactRequest updateCustomerContact) {
+        return ResponseEntity.ok(customerContactService.updateCustomerContact(id, updateCustomerContact));
     }
 
-    @PreAuthorize("hasAnyRole('ADMIN', 'EDITOR')")
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteCustomerContact(@PathVariable Long id) {
         customerContactService.deleteCustomerContact(id);

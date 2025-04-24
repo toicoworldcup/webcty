@@ -10,9 +10,9 @@ public interface CompanyDetailService {
 
     CompanyDetailResponse getCompanyDetailById(Long id);
 
-    CompanyDetailResponse createCompanyDetail(CompanyDetailRequest request);
+    CompanyDetailResponse createCompanyDetail(CompanyDetailRequest companyDetail);
 
-    CompanyDetailResponse updateCompanyDetail(Long id, CompanyDetailRequest request);
+    CompanyDetailResponse updateCompanyDetail(Long id, CompanyDetailRequest updatedCompanyDetail);
 
     void deleteCompanyDetail(Long id);
 }

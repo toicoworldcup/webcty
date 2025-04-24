@@ -10,9 +10,9 @@ public interface NewsService {
 
     NewsResponse getNewsById(Long id);
 
-    NewsResponse createNews(NewsRequest request);
+    NewsResponse createNews(NewsRequest news);
 
-    NewsResponse updateNews(Long id, NewsRequest request);
+    NewsResponse updateNews(Long id, NewsRequest updatedNews);
 
     void deleteNews(Long id);
 }

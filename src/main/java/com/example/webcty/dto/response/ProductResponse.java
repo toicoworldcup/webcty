@@ -1,14 +1,14 @@
 package com.example.webcty.dto.response;
 
-import lombok.*;
+import lombok.Data;
 
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
+import java.util.List;
+
+@Data
 public class ProductResponse {
     private Long id;
     private String title;
-    private String content;
-    private String slug;
+    private String description;
+    private String image;
+    private List<String> tag;
 }

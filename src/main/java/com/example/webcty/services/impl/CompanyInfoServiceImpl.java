@@ -3,6 +3,8 @@ package com.example.webcty.services.impl;
 import com.example.webcty.dto.request.CompanyInfoRequest;
 import com.example.webcty.dto.response.CompanyInfoResponse;
 import com.example.webcty.entities.CompanyInfo;
+import com.example.webcty.mapper.BannerMapper;
+import com.example.webcty.mapper.CompanyInfoMapper;
 import com.example.webcty.repositories.CompanyInfoRepository;
 import com.example.webcty.services.CompanyInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,75 +16,56 @@ import java.util.stream.Collectors;
 @Service
 public class CompanyInfoServiceImpl implements CompanyInfoService {
     private final CompanyInfoRepository companyInfoRepository;
+    private final CompanyInfoMapper companyInfoMapper;
 
     @Autowired
-    public CompanyInfoServiceImpl(CompanyInfoRepository companyInfoRepository) {
+    public CompanyInfoServiceImpl(CompanyInfoRepository companyInfoRepository, BannerMapper bannerMapper) {
         this.companyInfoRepository = companyInfoRepository;
+        this.companyInfoMapper = new CompanyInfoMapper();
     }
 
-    private CompanyInfoResponse convertToResponse(CompanyInfo companyInfo) {
-        CompanyInfoResponse response = new CompanyInfoResponse();
-        response.setId(companyInfo.getId());
-        response.setSiteName(companyInfo.getSiteName());
-        response.setSiteDescription(companyInfo.getSiteDescription());
-        response.setContactEmail(companyInfo.getContactEmail());
-        response.setContactPhone(companyInfo.getContactPhone());
-        response.setContactAddress(companyInfo.getContactAddress());
-        response.setWorkingHours(companyInfo.getWorkingHours());
-        response.setMapEmbedUrl(companyInfo.getMapEmbedUrl());
-        return response;
-    }
-
-    private CompanyInfo convertToEntity(CompanyInfoRequest request) {
-        CompanyInfo companyInfo = new CompanyInfo();
-        companyInfo.setSiteName(request.getSiteName());
-        companyInfo.setSiteDescription(request.getSiteDescription());
-        companyInfo.setContactEmail(request.getContactEmail());
-        companyInfo.setContactPhone(request.getContactPhone());
-        companyInfo.setContactAddress(request.getContactAddress());
-        companyInfo.setWorkingHours(request.getWorkingHours());
-        companyInfo.setMapEmbedUrl(request.getMapEmbedUrl());
-        return companyInfo;
-    }
-    
     @Override
-    public List<CompanyInfoResponse> getAllCompanyInfo() {
-        return companyInfoRepository.findAll().stream().map(this::convertToResponse).collect(Collectors.toList());
+    public List<CompanyInfoResponse> getAllCompanyInfos() {
+        return companyInfoRepository.findAll().stream()
+                .map(companyInfoMapper::toResponseDTO)
+                .collect(Collectors.toList());
     }
 
     @Override
     public CompanyInfoResponse getCompanyInfoById(Long id) {
-        return companyInfoRepository.findById(id).map(this::convertToResponse).orElseThrow(() -> new RuntimeException("CompanyInfo not found"));
+        CompanyInfo companyInfo = companyInfoRepository.findById(id).orElse(null);
+        return companyInfo != null ? companyInfoMapper.toResponseDTO(companyInfo) : null;
     }
 
     @Override
-    public CompanyInfoResponse createCompanyInfo(CompanyInfoRequest request) {
-        CompanyInfo newCompanyInfo = convertToEntity(request);
-        CompanyInfo savedCompanyInfo = companyInfoRepository.save(newCompanyInfo);
-        return convertToResponse(savedCompanyInfo);
+    public CompanyInfoResponse createCompanyInfo(CompanyInfoRequest companyInfoDTO) {
+        CompanyInfo companyInfo = companyInfoMapper.toEntity(companyInfoDTO);
+        CompanyInfo savedCompanyInfo = companyInfoRepository.save(companyInfo);
+        return companyInfoMapper.toResponseDTO(savedCompanyInfo);
     }
 
     @Override
-    public CompanyInfoResponse updateCompanyInfo(Long id, CompanyInfoRequest request) {
-        CompanyInfo existingCompanyInfo = companyInfoRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("CompanyInfo not found"));
-
-        existingCompanyInfo.setSiteName(request.getSiteName());
-        existingCompanyInfo.setSiteDescription(request.getSiteDescription());
-        existingCompanyInfo.setContactEmail(request.getContactEmail());
-        existingCompanyInfo.setContactPhone(request.getContactPhone());
-        existingCompanyInfo.setContactAddress(request.getContactAddress());
-        existingCompanyInfo.setWorkingHours(request.getWorkingHours());
-        existingCompanyInfo.setMapEmbedUrl(request.getMapEmbedUrl());
-
-        CompanyInfo updatedCompanyInfo = companyInfoRepository.save(existingCompanyInfo);
-        return convertToResponse(updatedCompanyInfo);
+    public CompanyInfoResponse updateCompanyInfo(Long id, CompanyInfoRequest updatedCompanyInfoDTO) {
+        CompanyInfo companyInfo = companyInfoRepository.findById(id).orElse(null);
+        if (companyInfo != null) {
+            companyInfo.setSiteName(updatedCompanyInfoDTO.getSiteName());
+            companyInfo.setSiteDescription(updatedCompanyInfoDTO.getSiteDescription());
+            companyInfo.setIcon(updatedCompanyInfoDTO.getIcon());
+            companyInfo.setDirector(updatedCompanyInfoDTO.getDirector());
+            companyInfo.setYear(updatedCompanyInfoDTO.getYear());
+            companyInfo.setContactEmail(updatedCompanyInfoDTO.getContactEmail());
+            companyInfo.setContactPhone(updatedCompanyInfoDTO.getContactPhone());
+            companyInfo.setContactAddress(updatedCompanyInfoDTO.getContactAddress());
+            companyInfo.setWorkingHours(updatedCompanyInfoDTO.getWorkingHours());
+            companyInfo.setMapUrl(updatedCompanyInfoDTO.getMapUrl());
+            CompanyInfo updatedCompanyInfo = companyInfoRepository.save(companyInfo);
+            return companyInfoMapper.toResponseDTO(updatedCompanyInfo);
+        }
+        return null;
     }
 
     @Override
     public void deleteCompanyInfo(Long id) {
-        if (!companyInfoRepository.existsById(id)) {
-            throw new RuntimeException("CompanyInfo not found");
-        }
-        companyInfoRepository.deleteById(id);    }
+        companyInfoRepository.deleteById(id);
+    }
 }
