@@ -1,13 +1,10 @@
 package com.example.webcty.dto.response;
 
-import lombok.*;
+import lombok.Data;
 
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
+@Data
 public class CompanyDetailResponse {
     private Long id;
     private String title;
-    private String content;
+    private String description;
 }

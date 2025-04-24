@@ -6,13 +6,13 @@ import com.example.webcty.dto.response.CompanyInfoResponse;
 import java.util.List;
 
 public interface CompanyInfoService {
-    List<CompanyInfoResponse> getAllCompanyInfo();
+    List<CompanyInfoResponse> getAllCompanyInfos();
 
     CompanyInfoResponse getCompanyInfoById(Long id);
 
-    CompanyInfoResponse createCompanyInfo(CompanyInfoRequest request);
+    CompanyInfoResponse createCompanyInfo(CompanyInfoRequest companyInfo);
 
-    CompanyInfoResponse updateCompanyInfo(Long id, CompanyInfoRequest request);
+    CompanyInfoResponse updateCompanyInfo(Long id, CompanyInfoRequest updatedCompanyInfo);
 
     void deleteCompanyInfo(Long id);
 }

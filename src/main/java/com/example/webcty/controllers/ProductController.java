@@ -26,20 +26,20 @@ public class ProductController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ProductResponse> getProductById(@PathVariable Long id) {
+    public ResponseEntity<ProductResponse> getServiceById(@PathVariable Long id) {
         return ResponseEntity.ok(productService.getProductById(id));
     }
 
     @PreAuthorize("hasAnyRole('ADMIN', 'EDITOR')")
     @PostMapping
-    public ResponseEntity<ProductResponse> createProduct(@RequestBody ProductRequest request) {
-        return ResponseEntity.ok(productService.createProduct(request));
+    public ResponseEntity<ProductResponse> createService(@RequestBody ProductRequest product) {
+        return ResponseEntity.ok(productService.createProduct(product));
     }
 
     @PreAuthorize("hasAnyRole('ADMIN', 'EDITOR')")
     @PutMapping("/{id}")
-    public ResponseEntity<ProductResponse> updateProduct(@PathVariable Long id, @RequestBody ProductRequest request) {
-        return ResponseEntity.ok(productService.updateProduct(id, request));
+    public ResponseEntity<ProductResponse> updateProduct(@PathVariable Long id, @RequestBody ProductRequest updatedProduct) {
+        return ResponseEntity.ok(productService.updateProduct(id, updatedProduct));
     }
 
     @PreAuthorize("hasAnyRole('ADMIN', 'EDITOR')")

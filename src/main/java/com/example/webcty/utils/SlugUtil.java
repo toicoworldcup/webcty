@@ -8,4 +8,3 @@ public class SlugUtil {
         return slugify.slugify(title);
     }
 }
-

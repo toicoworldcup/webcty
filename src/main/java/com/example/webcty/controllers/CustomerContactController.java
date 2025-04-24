@@ -30,16 +30,15 @@ public class CustomerContactController {
         return ResponseEntity.ok(customerContactService.getCustomerContactById(id));
     }
 
-    @PreAuthorize("hasAnyRole('ADMIN', 'EDITOR')")
     @PostMapping
-    public ResponseEntity<CustomerContactResponse> createCustomerContact(@RequestBody CustomerContactRequest request) {
-        return ResponseEntity.ok(customerContactService.createCustomerContact(request));
+    public ResponseEntity<CustomerContactResponse> createCustomerContact(@RequestBody CustomerContactRequest customerContact) {
+        return ResponseEntity.ok(customerContactService.createCustomerContact(customerContact));
     }
 
     @PreAuthorize("hasAnyRole('ADMIN', 'EDITOR')")
     @PutMapping("/{id}")
-    public ResponseEntity<CustomerContactResponse> updateCustomerContact(@PathVariable Long id, @RequestBody CustomerContactRequest request) {
-        return ResponseEntity.ok(customerContactService.updateCustomerContact(id, request));
+    public ResponseEntity<CustomerContactResponse> updateCustomerContact(@PathVariable Long id, @RequestBody CustomerContactRequest updateCustomerContact) {
+        return ResponseEntity.ok(customerContactService.updateCustomerContact(id, updateCustomerContact));
     }
 
     @PreAuthorize("hasAnyRole('ADMIN', 'EDITOR')")

@@ -1,12 +1,11 @@
 package com.example.webcty.dto.response;
 
 import com.example.webcty.enums.ContactStatus;
-import lombok.*;
+import lombok.Data;
 
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
+import java.time.LocalDateTime;
+
+@Data
 public class CustomerContactResponse {
     private Long id;
     private String name;
@@ -14,4 +13,5 @@ public class CustomerContactResponse {
     private String phone;
     private String message;
     private ContactStatus status;
+    private LocalDateTime createdDate;
 }

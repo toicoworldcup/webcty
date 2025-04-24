@@ -1,5 +1,6 @@
 package com.example.webcty.services;
 
+
 import com.example.webcty.dto.request.CustomerContactRequest;
 import com.example.webcty.dto.response.CustomerContactResponse;
 
@@ -10,9 +11,9 @@ public interface CustomerContactService {
 
     CustomerContactResponse getCustomerContactById(Long id);
 
-    CustomerContactResponse createCustomerContact(CustomerContactRequest request);
+    CustomerContactResponse createCustomerContact(CustomerContactRequest customerContact);
 
-    CustomerContactResponse updateCustomerContact(Long id, CustomerContactRequest request);
+    CustomerContactResponse updateCustomerContact(Long id, CustomerContactRequest updatedCustomerContact);
 
     void deleteCustomerContact(Long id);
 }

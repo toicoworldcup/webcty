@@ -1,12 +1,13 @@
 package com.example.webcty.dto.request;
 
-import lombok.*;
+import jakarta.validation.constraints.NotBlank;
+import lombok.Data;
 
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
+@Data
 public class CompanyDetailRequest {
+    @NotBlank(message = "Name is required")
     private String title;
-    private String content;
+
+    @NotBlank(message = "Description is required")
+    private String description;
 }

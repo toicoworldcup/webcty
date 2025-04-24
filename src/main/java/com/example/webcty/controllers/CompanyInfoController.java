@@ -21,8 +21,8 @@ public class CompanyInfoController {
     }
 
     @GetMapping
-    public ResponseEntity<List<CompanyInfoResponse>> getAllCompanyInfo() {
-        return ResponseEntity.ok(companyInfoService.getAllCompanyInfo());
+    public ResponseEntity<List<CompanyInfoResponse>> getAllCompanyInfos() {
+        return ResponseEntity.ok(companyInfoService.getAllCompanyInfos());
     }
 
     @GetMapping("/{id}")
@@ -32,14 +32,14 @@ public class CompanyInfoController {
 
     @PreAuthorize("hasAnyRole('ADMIN', 'EDITOR')")
     @PostMapping
-    public ResponseEntity<CompanyInfoResponse> createCompanyInfo(@RequestBody CompanyInfoRequest request) {
-        return ResponseEntity.ok(companyInfoService.createCompanyInfo(request));
+    public ResponseEntity<CompanyInfoResponse> createCompanyInfo(@RequestBody CompanyInfoRequest companyInfo) {
+        return ResponseEntity.ok(companyInfoService.createCompanyInfo(companyInfo));
     }
 
     @PreAuthorize("hasAnyRole('ADMIN', 'EDITOR')")
     @PutMapping("/{id}")
-    public ResponseEntity<CompanyInfoResponse> updateCompanyInfo(@PathVariable Long id, @RequestBody CompanyInfoRequest request) {
-        return ResponseEntity.ok(companyInfoService.updateCompanyInfo(id, request));
+    public ResponseEntity<CompanyInfoResponse> updateCompanyInfo(@PathVariable Long id, @RequestBody CompanyInfoRequest updateCompanyInfo) {
+        return ResponseEntity.ok(companyInfoService.updateCompanyInfo(id, updateCompanyInfo));
     }
 
     @PreAuthorize("hasAnyRole('ADMIN', 'EDITOR')")

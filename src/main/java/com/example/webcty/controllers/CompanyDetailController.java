@@ -32,14 +32,14 @@ public class CompanyDetailController {
 
     @PreAuthorize("hasAnyRole('ADMIN', 'EDITOR')")
     @PostMapping
-    public ResponseEntity<CompanyDetailResponse> createCompanyDetail(@RequestBody CompanyDetailRequest request) {
-        return ResponseEntity.ok(companyDetailService.createCompanyDetail(request));
+    public ResponseEntity<CompanyDetailResponse> createCompanyDetail(@RequestBody CompanyDetailRequest companyDetail) {
+        return ResponseEntity.ok(companyDetailService.createCompanyDetail(companyDetail));
     }
 
     @PreAuthorize("hasAnyRole('ADMIN', 'EDITOR')")
     @PutMapping("/{id}")
-    public ResponseEntity<CompanyDetailResponse> updateCompanyDetail(@PathVariable Long id, @RequestBody CompanyDetailRequest request) {
-        return ResponseEntity.ok(companyDetailService.updateCompanyDetail(id, request));
+    public ResponseEntity<CompanyDetailResponse> updateCompanyDetail(@PathVariable Long id, @RequestBody CompanyDetailRequest updateCompanyDetail) {
+        return ResponseEntity.ok(companyDetailService.updateCompanyDetail(id, updateCompanyDetail));
     }
 
     @PreAuthorize("hasAnyRole('ADMIN', 'EDITOR')")

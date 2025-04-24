@@ -1,14 +1,14 @@
 package com.example.webcty.dto.response;
 
-import lombok.*;
+import lombok.Data;
+import java.time.LocalDateTime;
 
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
+@Data
 public class NewsResponse {
     private Long id;
     private String title;
-    private String content;
-    private String slug;
+    private String description;
+    private String image;
+    private LocalDateTime createdDate;
+    private LocalDateTime modifiedDate;
 }

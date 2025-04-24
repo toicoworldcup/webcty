@@ -32,14 +32,14 @@ public class NewsController {
 
     @PreAuthorize("hasAnyRole('ADMIN', 'EDITOR')")
     @PostMapping
-    public ResponseEntity<NewsResponse> createNews(@RequestBody NewsRequest request) {
-        return ResponseEntity.ok(newsService.createNews(request));
+    public ResponseEntity<NewsResponse> createNews(@RequestBody NewsRequest news) {
+        return ResponseEntity.ok(newsService.createNews(news));
     }
 
     @PreAuthorize("hasAnyRole('ADMIN', 'EDITOR')")
     @PutMapping("/{id}")
-    public ResponseEntity<NewsResponse> updateNews(@PathVariable Long id, @RequestBody NewsRequest request) {
-        return ResponseEntity.ok(newsService.updateNews(id, request));
+    public ResponseEntity<NewsResponse> updateNews(@PathVariable Long id, @RequestBody NewsRequest updateNews) {
+        return ResponseEntity.ok(newsService.updateNews(id, updateNews));
     }
 
     @PreAuthorize("hasAnyRole('ADMIN', 'EDITOR')")

@@ -1,13 +1,16 @@
 package com.example.webcty.dto.request;
 
-import lombok.*;
+import jakarta.validation.constraints.NotBlank;
+import lombok.Data;
 
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
+@Data
 public class NewsRequest {
+    @NotBlank(message = "Title is required")
     private String title;
-    private String content;
-    private String slug;
+
+    @NotBlank(message = "Description is required")
+    private String description;
+
+    @NotBlank(message = "Image is required")
+    private String image;
 }

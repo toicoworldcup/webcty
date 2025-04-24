@@ -1,5 +1,6 @@
 package com.example.webcty.config.security;
-import com.example.webcty.repositories.EmployeeRepository;
+import com.example.webcty.repositories.MemberRepository;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -7,15 +8,20 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
-    private final EmployeeRepository employeeRepository;
+    private final MemberRepository memberRepository;
 
-    public CustomUserDetailsService(EmployeeRepository employeeRepository) {
-        this.employeeRepository = employeeRepository;
+    public CustomUserDetailsService(MemberRepository memberRepository) {
+        this.memberRepository = memberRepository;
     }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return employeeRepository.findByUsername(username)
+        return memberRepository.findByUsername(username)
+                .map(user -> User.builder()
+                        .username(user.getUsername())
+                        .password(user.getPassword())
+                        .authorities(String.valueOf(user.getRole()))
+                        .build())
                 .orElseThrow(() -> new UsernameNotFoundException("User not found: " + username));
     }
 }
