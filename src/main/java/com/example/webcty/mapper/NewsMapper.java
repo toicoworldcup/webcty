@@ -22,6 +22,8 @@ public class NewsMapper {
         dto.setTitle(entity.getTitle());
         dto.setDescription(entity.getDescription());
         dto.setImage(entity.getImage());
+        dto.setCreatedDate(entity.getCreatedDate());
+        dto.setModifiedDate(entity.getModifiedDate());
         return dto;
     }
 }
