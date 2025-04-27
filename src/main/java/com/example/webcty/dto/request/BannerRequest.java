@@ -1,6 +1,7 @@
 package com.example.webcty.dto.request;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 import java.util.List;
@@ -13,6 +14,6 @@ public class BannerRequest {
     @NotBlank(message = "Description is required")
     private String description;
 
-    @NotBlank(message = "ImageUrls is required")
+    @NotNull(message = "ImageUrls is required")
     private List<String> imageUrls;
 }

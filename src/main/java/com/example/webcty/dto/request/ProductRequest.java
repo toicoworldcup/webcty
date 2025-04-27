@@ -1,6 +1,7 @@
 package com.example.webcty.dto.request;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 import java.util.List;
@@ -16,6 +17,6 @@ public class ProductRequest {
     @NotBlank(message = "Image is required")
     private String image;
 
-    @NotBlank(message = "Tags is required")
+    @NotNull(message = "Tags is required")
     private List<String> tags;
 }
