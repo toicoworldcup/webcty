@@ -6,6 +6,7 @@ import com.example.webcty.entities.Banner;
 import com.example.webcty.mapper.BannerMapper;
 import com.example.webcty.repositories.BannerRepository;
 import com.example.webcty.services.BannerService;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -37,7 +38,9 @@ public class BannerServiceImpl implements BannerService {
     }
 
     @Override
+    @Transactional
     public BannerResponse createBanner(BannerRequest bannerDTO) {
+        bannerRepository.deleteAll();
         Banner banner = bannerMapper.toEntity(bannerDTO);
         Banner savedBanner = bannerRepository.save(banner);
         return bannerMapper.toResponseDTO(savedBanner);

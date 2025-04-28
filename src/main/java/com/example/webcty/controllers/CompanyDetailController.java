@@ -25,11 +25,6 @@ public class CompanyDetailController {
         return ResponseEntity.ok(companyDetailService.getAllCompanyDetails());
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<CompanyDetailResponse> getCompanyDetailById(@PathVariable Long id) {
-        return ResponseEntity.ok(companyDetailService.getCompanyDetailById(id));
-    }
-
     @PreAuthorize("hasAnyRole('ADMIN', 'EDITOR')")
     @PostMapping
     public ResponseEntity<CompanyDetailResponse> createCompanyDetail(@RequestBody CompanyDetailRequest companyDetail) {

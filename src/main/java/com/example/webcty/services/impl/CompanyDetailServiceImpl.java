@@ -7,6 +7,7 @@ import com.example.webcty.mapper.BannerMapper;
 import com.example.webcty.mapper.CompanyDetailMapper;
 import com.example.webcty.repositories.CompanyDetailRepository;
 import com.example.webcty.services.CompanyDetailService;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -38,7 +39,9 @@ public class CompanyDetailServiceImpl implements CompanyDetailService {
     }
 
     @Override
+    @Transactional
     public CompanyDetailResponse createCompanyDetail(CompanyDetailRequest companyDetailDTO) {
+        companyDetailRepository.deleteAll();
         CompanyDetail companyDetail = companyDetailMapper.toEntity(companyDetailDTO);
         CompanyDetail savedCompanyDetail = companyDetailRepository.save(companyDetail);
         return companyDetailMapper.toResponseDTO(savedCompanyDetail);

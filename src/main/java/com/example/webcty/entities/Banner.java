@@ -28,5 +28,7 @@ public class Banner extends BaseEntity {
             name = "banner_images",
             joinColumns = @JoinColumn(name = "banner_id")
     )
+    @Column(name = "image_urls", nullable = false, columnDefinition = "LONGTEXT")
+    @Lob
     private List<String> imageUrls;
 }

@@ -25,11 +25,6 @@ public class CompanyInfoController {
         return ResponseEntity.ok(companyInfoService.getAllCompanyInfos());
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<CompanyInfoResponse> getCompanyInfoById(@PathVariable Long id) {
-        return ResponseEntity.ok(companyInfoService.getCompanyInfoById(id));
-    }
-
     @PreAuthorize("hasAnyRole('ADMIN', 'EDITOR')")
     @PostMapping
     public ResponseEntity<CompanyInfoResponse> createCompanyInfo(@RequestBody CompanyInfoRequest companyInfo) {
