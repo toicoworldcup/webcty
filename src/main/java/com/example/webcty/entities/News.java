@@ -21,6 +21,6 @@ public class News extends BaseEntity {
     @Column(columnDefinition = "TEXT", nullable = false)
     private String description;
 
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "LONGTEXT")
     private String image;
 }

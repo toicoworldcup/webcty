@@ -24,11 +24,6 @@ public class BannerController {
         return ResponseEntity.ok(bannerService.getAllBanners());
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<BannerResponse> getBannerById(@PathVariable Long id) {
-        return ResponseEntity.ok(bannerService.getBannerById(id));
-    }
-
     @PostMapping
     public ResponseEntity<BannerResponse> createBanner(@RequestBody BannerRequest banner) {
         return ResponseEntity.ok(bannerService.createBanner(banner));

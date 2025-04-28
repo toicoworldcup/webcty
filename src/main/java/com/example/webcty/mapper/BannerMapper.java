@@ -11,7 +11,7 @@ public class BannerMapper {
         Banner banner = new Banner();
         banner.setTitle(dto.getTitle());
         banner.setDescription(dto.getDescription());
-        banner.setImageUrl(dto.getImageUrl());
+        banner.setImageUrls(dto.getImageUrls());
         banner.setCreatedBy("admin"); // Mặc định created_by là admin
         return banner;
     }
@@ -21,7 +21,7 @@ public class BannerMapper {
         dto.setId(entity.getId());
         dto.setTitle(entity.getTitle());
         dto.setDescription(entity.getDescription());
-        dto.setImageUrl(entity.getImageUrl());
+        dto.setImageUrls(entity.getImageUrls());
         return dto;
     }
 }

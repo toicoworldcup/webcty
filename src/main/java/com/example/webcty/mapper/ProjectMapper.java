@@ -12,7 +12,7 @@ public class ProjectMapper {
         project.setTitle(dto.getTitle());
         project.setDescription(dto.getDescription());
         project.setImage(dto.getImage());
-        project.setTag(dto.getTag());
+        project.setTags(dto.getTags());
         project.setCreatedBy("admin"); // Mặc định created_by là admin
         return project;
     }
@@ -23,7 +23,7 @@ public class ProjectMapper {
         dto.setTitle(entity.getTitle());
         dto.setDescription(entity.getDescription());
         dto.setImage(entity.getImage());
-        dto.setTag(entity.getTag());
+        dto.setTags(entity.getTags());
         return dto;
     }
 }

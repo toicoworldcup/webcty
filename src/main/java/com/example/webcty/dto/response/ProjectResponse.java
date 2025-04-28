@@ -10,5 +10,5 @@ public class ProjectResponse {
     private String title;
     private String description;
     private String image;
-    private List<String> tag;
+    private List<String> tags;
 }

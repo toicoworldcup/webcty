@@ -50,7 +50,7 @@ public class ProductServiceImpl implements ProductService {
             product.setTitle(updatedproductDTO.getTitle());
             product.setDescription(updatedproductDTO.getDescription());
             product.setImage(updatedproductDTO.getImage());
-            product.setTag(updatedproductDTO.getTag());
+            product.setTags(updatedproductDTO.getTags());
             Product updatedProduct = productRepository.save(product);
             return productMapper.toResponseDTO(updatedProduct);
         }

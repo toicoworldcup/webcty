@@ -50,7 +50,7 @@ public class ProjectServiceImpl implements ProjectService {
             project.setTitle(updatedprojectDTO.getTitle());
             project.setDescription(updatedprojectDTO.getDescription());
             project.setImage(updatedprojectDTO.getImage());
-            project.setTag(updatedprojectDTO.getTag());
+            project.setTags(updatedprojectDTO.getTags());
             Project updatedProject = projectRepository.save(project);
             return projectMapper.toResponseDTO(updatedProject);
         }

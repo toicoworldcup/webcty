@@ -12,7 +12,7 @@ public class ProductMapper {
         product.setTitle(dto.getTitle());
         product.setDescription(dto.getDescription());
         product.setImage(dto.getImage());
-        product.setTag(dto.getTag());
+        product.setTags(dto.getTags());
         product.setCreatedBy("admin"); // Mặc định created_by là admin
         return product;
     }
@@ -23,7 +23,7 @@ public class ProductMapper {
         dto.setTitle(entity.getTitle());
         dto.setDescription(entity.getDescription());
         dto.setImage(entity.getImage());
-        dto.setTag(entity.getTag());
+        dto.setTags(entity.getTags());
         return dto;
     }
 }

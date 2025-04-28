@@ -9,5 +9,5 @@ public class BannerResponse {
     private Long id;
     private String title;
     private String description;
-    private List<String> imageUrl;
+    private List<String> imageUrls;
 }

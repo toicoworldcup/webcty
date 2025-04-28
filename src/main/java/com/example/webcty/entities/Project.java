@@ -23,7 +23,7 @@ public class Project extends BaseEntity {
     @Column(columnDefinition = "TEXT", nullable = false)
     private String description;
 
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "LONGTEXT")
     private String image;
 
     @ElementCollection
@@ -31,6 +31,6 @@ public class Project extends BaseEntity {
             name = "project_tags",
             joinColumns = @JoinColumn(name = "project_id")
     )
-    @Column(name = "tag", nullable = false)
-    private List<String> tag;
+    @Column(name = "tags", nullable = false)
+    private List<String> tags;
 }
