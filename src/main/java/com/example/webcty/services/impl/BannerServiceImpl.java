@@ -50,8 +50,7 @@ public class BannerServiceImpl implements BannerService {
     public BannerResponse updateBanner(Long id, BannerRequest updatedBannerDTO) {
         Banner banner = bannerRepository.findById(id).orElse(null);
         if (banner != null) {
-            banner.setTitle(updatedBannerDTO.getTitle());
-            banner.setDescription(updatedBannerDTO.getDescription());
+            banner.setSlogan(updatedBannerDTO.getSlogan());
             banner.setImageUrls(updatedBannerDTO.getImageUrls());
             Banner updatedBanner = bannerRepository.save(banner);
             return bannerMapper.toResponseDTO(updatedBanner);

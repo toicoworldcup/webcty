@@ -11,8 +11,5 @@ public class MemberResponse {
     private String username;
     private String email;
     private String emCode;
-    private String password;
     private MemberRole role;
-    private LocalDateTime createdDate;
-    private LocalDateTime modifiedDate;
 }

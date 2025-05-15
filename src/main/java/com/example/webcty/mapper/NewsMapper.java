@@ -11,7 +11,9 @@ public class NewsMapper {
         News news = new News();
         news.setTitle(dto.getTitle());
         news.setDescription(dto.getDescription());
+        news.setContent(dto.getContent());
         news.setImage(dto.getImage());
+        news.setOrderIndex(dto.getOrderIndex());
         news.setCreatedBy("admin"); // Mặc định created_by là admin
         return news;
     }
@@ -21,7 +23,9 @@ public class NewsMapper {
         dto.setId(entity.getId());
         dto.setTitle(entity.getTitle());
         dto.setDescription(entity.getDescription());
+        dto.setContent(entity.getContent());
         dto.setImage(entity.getImage());
+        dto.setOrderIndex(entity.getOrderIndex());
         dto.setCreatedDate(entity.getCreatedDate());
         dto.setModifiedDate(entity.getModifiedDate());
         return dto;

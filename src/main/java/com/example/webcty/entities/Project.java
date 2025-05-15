@@ -23,14 +23,9 @@ public class Project extends BaseEntity {
     @Column(columnDefinition = "TEXT", nullable = false)
     private String description;
 
-    @Column(nullable = false, columnDefinition = "LONGTEXT")
+    @Column(columnDefinition = "LONGTEXT", nullable = false)
     private String image;
 
-    @ElementCollection
-    @CollectionTable(
-            name = "project_tags",
-            joinColumns = @JoinColumn(name = "project_id")
-    )
-    @Column(name = "tags", nullable = false)
-    private List<String> tags;
+    @Column(columnDefinition = "LONGTEXT", nullable = false)
+    private String content;
 }

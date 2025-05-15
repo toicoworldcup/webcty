@@ -9,8 +9,7 @@ import org.springframework.stereotype.Component;
 public class BannerMapper {
     public Banner toEntity(BannerRequest dto) {
         Banner banner = new Banner();
-        banner.setTitle(dto.getTitle());
-        banner.setDescription(dto.getDescription());
+        banner.setSlogan(dto.getSlogan());
         banner.setImageUrls(dto.getImageUrls());
         banner.setCreatedBy("admin"); // Mặc định created_by là admin
         return banner;
@@ -19,8 +18,7 @@ public class BannerMapper {
     public BannerResponse toResponseDTO(Banner entity) {
         BannerResponse dto = new BannerResponse();
         dto.setId(entity.getId());
-        dto.setTitle(entity.getTitle());
-        dto.setDescription(entity.getDescription());
+        dto.setSlogan(entity.getSlogan());
         dto.setImageUrls(entity.getImageUrls());
         return dto;
     }

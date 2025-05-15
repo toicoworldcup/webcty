@@ -17,6 +17,6 @@ public class ProjectRequest {
     @NotBlank(message = "Image is required")
     private String image;
 
-    @NotNull(message = "Tags is required")
-    private List<String> tags;
+    @NotBlank(message = "Content is required")
+    private String content;
 }

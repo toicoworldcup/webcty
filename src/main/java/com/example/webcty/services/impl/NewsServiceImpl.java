@@ -9,6 +9,7 @@ import com.example.webcty.services.NewsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -25,7 +26,14 @@ public class NewsServiceImpl implements NewsService {
 
     @Override
     public List<NewsResponse> getAllNews() {
-        return newsRepository.findAll().stream()
+        List<News> top4 = newsRepository.findTop4ByOrderIndexIsNotNullOrderByOrderIndexAsc();
+        List<News> rest = newsRepository.findByOrderIndexIsNullOrderByCreatedDateDesc();
+
+        List<News> allNews = new ArrayList<>();
+        allNews.addAll(top4);
+        allNews.addAll(rest);
+
+        return allNews.stream()
                 .map(newsMapper::toResponseDTO)
                 .collect(Collectors.toList());
     }
@@ -44,12 +52,14 @@ public class NewsServiceImpl implements NewsService {
     }
 
     @Override
-    public NewsResponse updateNews(Long id, NewsRequest updatednewsDTO) {
+    public NewsResponse updateNews(Long id, NewsRequest updatedNewsDTO) {
         News news = newsRepository.findById(id).orElse(null);
         if (news != null) {
-            news.setTitle(updatednewsDTO.getTitle());
-            news.setDescription(updatednewsDTO.getDescription());
-            news.setImage(updatednewsDTO.getImage());
+            news.setTitle(updatedNewsDTO.getTitle());
+            news.setDescription(updatedNewsDTO.getDescription());
+            news.setContent(updatedNewsDTO.getContent());
+            news.setImage(updatedNewsDTO.getImage());
+            news.setOrderIndex(updatedNewsDTO.getOrderIndex());
             News updatedNews = newsRepository.save(news);
             return newsMapper.toResponseDTO(updatedNews);
         }

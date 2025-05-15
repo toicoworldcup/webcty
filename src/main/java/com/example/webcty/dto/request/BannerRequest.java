@@ -8,12 +8,9 @@ import java.util.List;
 
 @Data
 public class BannerRequest {
-    @NotBlank(message = "Title is required")
-    private String title;
+    @NotBlank(message = "Slogan is required")
+    private String slogan;
 
-    @NotBlank(message = "Description is required")
-    private String description;
-
-    @NotNull(message = "ImageUrl is required")
+    @NotNull(message = "ImageUrls is required")
     private List<String> imageUrls;
 }

@@ -20,9 +20,9 @@ public class CompanyInfoServiceImpl implements CompanyInfoService {
     private final CompanyInfoMapper companyInfoMapper;
 
     @Autowired
-    public CompanyInfoServiceImpl(CompanyInfoRepository companyInfoRepository, BannerMapper bannerMapper) {
+    public CompanyInfoServiceImpl(CompanyInfoRepository companyInfoRepository, CompanyInfoMapper companyInfoMapper) {
         this.companyInfoRepository = companyInfoRepository;
-        this.companyInfoMapper = new CompanyInfoMapper();
+        this.companyInfoMapper = companyInfoMapper;
     }
 
     @Override

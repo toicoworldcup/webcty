@@ -18,10 +18,10 @@ public class CompanyInfo extends BaseEntity {
     @Column(nullable = false)
     private String siteName;
 
-    @Column(columnDefinition = "TEXT")
+    @Column(columnDefinition = "TEXT", nullable = false)
     private String siteDescription;
 
-    @Column(nullable = false)
+    @Column(columnDefinition = "LONGTEXT", nullable = false)
     private String icon;
 
     @Column(nullable = false)

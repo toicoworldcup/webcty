@@ -18,9 +18,9 @@ public class CustomerContactServiceImpl implements CustomerContactService {
     private final CustomerContactMapper customerContactMapper;
 
     @Autowired
-    public CustomerContactServiceImpl(CustomerContactRepository customerContactRepository) {
+    public CustomerContactServiceImpl(CustomerContactRepository customerContactRepository, CustomerContactMapper customerContactMapper) {
         this.customerContactRepository = customerContactRepository;
-        this.customerContactMapper = new CustomerContactMapper();
+        this.customerContactMapper = customerContactMapper;
     }
 
     @Override

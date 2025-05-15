@@ -14,6 +14,7 @@ public class MemberMapper {
         member.setEmCode(dto.getEmCode());
         member.setPassword(dto.getPassword());
         member.setRole(dto.getRole());
+        member.setCreatedBy("admin"); // Mặc định created_by là admin
         return member;
     }
 
@@ -23,10 +24,7 @@ public class MemberMapper {
         dto.setUsername(entity.getUsername());
         dto.setEmail(entity.getEmail());
         dto.setEmCode(entity.getEmCode());
-        dto.setPassword(entity.getPassword());
         dto.setRole(entity.getRole());
-        dto.setCreatedDate(entity.getCreatedDate());
-        dto.setModifiedDate(entity.getModifiedDate());
         return dto;
     }
 }

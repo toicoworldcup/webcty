@@ -7,7 +7,6 @@ import java.util.List;
 @Data
 public class BannerResponse {
     private Long id;
-    private String title;
-    private String description;
+    private String slogan;
     private List<String> imageUrls;
 }

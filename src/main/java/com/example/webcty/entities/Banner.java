@@ -18,10 +18,7 @@ public class Banner extends BaseEntity {
     private Long id;
 
     @Column(nullable = false)
-    private String title;
-
-    @Column(columnDefinition = "TEXT", nullable = false)
-    private String description;
+    private String slogan;
 
     @ElementCollection
     @CollectionTable(
