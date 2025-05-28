@@ -24,14 +24,9 @@ public class MemberController {
         return ResponseEntity.ok(memberService.getAllMembers());
     }
 
-    @GetMapping("/id/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<MemberResponse> getMemberById(@PathVariable Long id) {
         return ResponseEntity.ok(memberService.getMemberById(id));
-    }
-
-    @GetMapping("/username/{username}")
-    public ResponseEntity<MemberResponse> getMemberByUsername(@PathVariable String username) {
-        return ResponseEntity.ok(memberService.getMemberByUsername(username));
     }
 
     @PostMapping
@@ -39,12 +34,12 @@ public class MemberController {
         return ResponseEntity.ok(memberService.createMember(member));
     }
 
-    @PutMapping("/id/{id}")
+    @PatchMapping("/{id}")
     public ResponseEntity<MemberResponse> updateMember(@PathVariable Long id, @RequestBody MemberRequest updatedMember) {
         return ResponseEntity.ok(memberService.updateMember(id, updatedMember));
     }
 
-    @DeleteMapping("/id/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteMember(@PathVariable Long id) {
         memberService.deleteMember(id);
         return ResponseEntity.noContent().build();

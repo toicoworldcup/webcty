@@ -13,7 +13,6 @@ public class MemberMapper {
         member.setEmail(dto.getEmail());
         member.setEmCode(dto.getEmCode());
         member.setPassword(dto.getPassword());
-        member.setRole(dto.getRole());
         member.setCreatedBy("admin"); // Mặc định created_by là admin
         return member;
     }

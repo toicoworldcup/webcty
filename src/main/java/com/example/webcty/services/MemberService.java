@@ -10,8 +10,6 @@ public interface MemberService {
 
     MemberResponse getMemberById(Long id);
 
-    MemberResponse getMemberByUsername(String username);
-
     MemberResponse createMember(MemberRequest member);
 
     MemberResponse updateMember(Long id, MemberRequest updatedMember);

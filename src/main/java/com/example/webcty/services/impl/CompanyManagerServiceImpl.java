@@ -2,7 +2,7 @@ package com.example.webcty.services.impl;
 
 import com.example.webcty.dto.request.CompanyManagerRequest;
 import com.example.webcty.dto.response.CompanyManagerResponse;
-import com.example.webcty.entities.CompanyManager;
+import com.example.webcty.entities.aboutUsPage.CompanyManager;
 import com.example.webcty.mapper.CompanyManagerMapper;
 import com.example.webcty.repositories.CompanyManagerRepository;
 import com.example.webcty.services.CompanyManagerService;
@@ -25,7 +25,7 @@ public class CompanyManagerServiceImpl implements CompanyManagerService {
     }
 
     @Override
-    public List<CompanyManagerResponse> getAllCompanyManagers() {
+    public List<CompanyManagerResponse> getAllCompanyManager() {
         return companyManagerRepository.findAll().stream()
                 .map(companyManagerMapper::toResponseDTO)
                 .collect(Collectors.toList());
@@ -40,6 +40,7 @@ public class CompanyManagerServiceImpl implements CompanyManagerService {
     @Override
     @Transactional
     public CompanyManagerResponse createCompanyManager(CompanyManagerRequest companyManagerDTO) {
+        companyManagerRepository.deleteAll();
         CompanyManager companyManager = companyManagerMapper.toEntity(companyManagerDTO);
         CompanyManager savedCompanyManager = companyManagerRepository.save(companyManager);
         return companyManagerMapper.toResponseDTO(savedCompanyManager);
@@ -49,11 +50,8 @@ public class CompanyManagerServiceImpl implements CompanyManagerService {
     public CompanyManagerResponse updateCompanyManager(Long id, CompanyManagerRequest updatedCompanyManagerDTO) {
         CompanyManager companyManager = companyManagerRepository.findById(id).orElse(null);
         if (companyManager != null) {
-            companyManager.setName(updatedCompanyManagerDTO.getName());
-            companyManager.setPosition(updatedCompanyManagerDTO.getPosition());
+            companyManager.setTitle(updatedCompanyManagerDTO.getTitle());
             companyManager.setDescription(updatedCompanyManagerDTO.getDescription());
-            companyManager.setImage(updatedCompanyManagerDTO.getImage());
-            companyManager.setOrderIndex(updatedCompanyManagerDTO.getOrderIndex());
             CompanyManager updatedCompanyManager = companyManagerRepository.save(companyManager);
             return companyManagerMapper.toResponseDTO(updatedCompanyManager);
         }

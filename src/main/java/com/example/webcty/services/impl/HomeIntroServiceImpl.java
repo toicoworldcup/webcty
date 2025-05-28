@@ -2,7 +2,7 @@ package com.example.webcty.services.impl;
 
 import com.example.webcty.dto.request.HomeIntroRequest;
 import com.example.webcty.dto.response.HomeIntroResponse;
-import com.example.webcty.entities.HomeIntro;
+import com.example.webcty.entities.homePage.HomeIntro;
 import com.example.webcty.mapper.HomeIntroMapper;
 import com.example.webcty.repositories.HomeIntroRepository;
 import com.example.webcty.services.HomeIntroService;
@@ -52,6 +52,7 @@ public class HomeIntroServiceImpl implements HomeIntroService {
         if (homeIntro != null) {
             homeIntro.setTitle(updatedHomeIntroDTO.getTitle());
             homeIntro.setDescription(updatedHomeIntroDTO.getDescription());
+            homeIntro.setContent(updatedHomeIntroDTO.getContent());
             homeIntro.setImage(updatedHomeIntroDTO.getImage());
             HomeIntro updatedHomeIntro = homeIntroRepository.save(homeIntro);
             return homeIntroMapper.toResponseDTO(updatedHomeIntro);

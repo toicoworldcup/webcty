@@ -37,12 +37,6 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public MemberResponse getMemberByUsername(String username) {
-        Member member = memberRepository.findByUsername(username);
-        return member != null ? memberMapper.toResponseDTO(member) : null;
-    }
-
-    @Override
     public MemberResponse createMember(MemberRequest memberDTO) {
         Member member = memberMapper.toEntity(memberDTO);
         Member savedMember = memberRepository.save(member);
@@ -56,8 +50,6 @@ public class MemberServiceImpl implements MemberService {
             member.setUsername(updatedMemberDTO.getUsername());
             member.setEmail(updatedMemberDTO.getEmail());
             member.setEmCode(updatedMemberDTO.getEmCode());
-            member.setPassword(updatedMemberDTO.getPassword());
-            member.setRole(updatedMemberDTO.getRole());
             Member updatedMember = memberRepository.save(member);
             return memberMapper.toResponseDTO(updatedMember);
         }

@@ -2,7 +2,7 @@ package com.example.webcty.mapper;
 
 import com.example.webcty.dto.request.NewsRequest;
 import com.example.webcty.dto.response.NewsResponse;
-import com.example.webcty.entities.News;
+import com.example.webcty.entities.newsPage.News;
 import org.springframework.stereotype.Component;
 
 @Component

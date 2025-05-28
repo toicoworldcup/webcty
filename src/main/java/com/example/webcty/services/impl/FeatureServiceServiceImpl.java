@@ -2,7 +2,7 @@ package com.example.webcty.services.impl;
 
 import com.example.webcty.dto.request.FeatureServiceRequest;
 import com.example.webcty.dto.response.FeatureServiceResponse;
-import com.example.webcty.entities.FeatureService;
+import com.example.webcty.entities.servicePage.FeatureService;
 import com.example.webcty.mapper.FeatureServiceMapper;
 import com.example.webcty.repositories.FeatureServiceRepository;
 import com.example.webcty.services.FeatureServiceService;
@@ -40,6 +40,7 @@ public class FeatureServiceServiceImpl implements FeatureServiceService {
     @Override
     @Transactional
     public FeatureServiceResponse createFeatureService(FeatureServiceRequest featureServiceDTO) {
+        featureServiceRepository.deleteAll();
         FeatureService featureService = featureServiceMapper.toEntity(featureServiceDTO);
         FeatureService savedFeatureService = featureServiceRepository.save(featureService);
         return featureServiceMapper.toResponseDTO(savedFeatureService);
@@ -51,7 +52,6 @@ public class FeatureServiceServiceImpl implements FeatureServiceService {
         if (featureService != null) {
             featureService.setTitle(updatedFeatureServiceDTO.getTitle());
             featureService.setDescription(updatedFeatureServiceDTO.getDescription());
-            featureService.setImage(updatedFeatureServiceDTO.getImage());
             FeatureService updatedfeatureService = featureServiceRepository.save(featureService);
             return featureServiceMapper.toResponseDTO(updatedfeatureService);
         }

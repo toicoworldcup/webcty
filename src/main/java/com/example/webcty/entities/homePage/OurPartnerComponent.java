@@ -1,0 +1,27 @@
+package com.example.webcty.entities.homePage;
+
+import com.example.webcty.entities.bases.BaseEntity;
+import jakarta.persistence.*;
+import lombok.*;
+
+@Entity
+@Table(name = "our_partner_component")
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
+public class OurPartnerComponent extends BaseEntity {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(columnDefinition = "TEXT", nullable = false)
+    private String name;
+
+    @Column(columnDefinition = "LONGTEXT", nullable = false)
+    private String logo;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "our_partner_id", nullable = false)
+    private OurPartner ourPartner;
+}

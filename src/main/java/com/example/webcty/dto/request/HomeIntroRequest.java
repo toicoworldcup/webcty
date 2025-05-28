@@ -5,11 +5,14 @@ import lombok.Data;
 
 @Data
 public class HomeIntroRequest {
-    @NotBlank(message = "Name is required")
+    @NotBlank(message = "Title is required")
     private String title;
 
     @NotBlank(message = "Description is required")
     private String description;
+
+    @NotBlank(message = "Content is required")
+    private String content;
 
     @NotBlank(message = "Image is required")
     private String image;

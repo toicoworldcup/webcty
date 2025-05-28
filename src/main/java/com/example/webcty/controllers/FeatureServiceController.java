@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/feature-services")
+@RequestMapping("/api/feature-service")
 public class FeatureServiceController {
     private final FeatureServiceService featureServiceService;
 
@@ -22,6 +22,11 @@ public class FeatureServiceController {
     @GetMapping
     public ResponseEntity<List<FeatureServiceResponse>> getAllFeatureService() {
         return ResponseEntity.ok(featureServiceService.getAllFeatureService());
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<FeatureServiceResponse> getFeatureServiceById(@PathVariable Long id) {
+        return ResponseEntity.ok(featureServiceService.getFeatureServiceById(id));
     }
 
     @PostMapping

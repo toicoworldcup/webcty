@@ -5,17 +5,9 @@ import lombok.Data;
 
 @Data
 public class CompanyManagerRequest {
-    @NotBlank(message = "Name is required")
-    private String name;
-
-    @NotBlank(message = "Position is required")
-    private String position;
+    @NotBlank(message = "Title is required")
+    private String title;
 
     @NotBlank(message = "Description is required")
     private String description;
-
-    @NotBlank(message = "Image is required")
-    private String image;
-
-    private int orderIndex;
 }

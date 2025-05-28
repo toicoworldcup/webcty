@@ -6,7 +6,7 @@ import com.example.webcty.dto.response.CompanyManagerResponse;
 import java.util.List;
 
 public interface CompanyManagerService {
-    List<CompanyManagerResponse> getAllCompanyManagers();
+    List<CompanyManagerResponse> getAllCompanyManager();
 
     CompanyManagerResponse getCompanyManagerById(Long id);
 

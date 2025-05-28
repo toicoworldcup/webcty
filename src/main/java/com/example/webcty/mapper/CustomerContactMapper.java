@@ -2,7 +2,7 @@ package com.example.webcty.mapper;
 
 import com.example.webcty.dto.request.CustomerContactRequest;
 import com.example.webcty.dto.response.CustomerContactResponse;
-import com.example.webcty.entities.CustomerContact;
+import com.example.webcty.entities.contactPage.CustomerContact;
 import org.springframework.stereotype.Component;
 
 @Component

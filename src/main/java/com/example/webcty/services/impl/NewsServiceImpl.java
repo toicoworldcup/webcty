@@ -2,7 +2,7 @@ package com.example.webcty.services.impl;
 
 import com.example.webcty.dto.request.NewsRequest;
 import com.example.webcty.dto.response.NewsResponse;
-import com.example.webcty.entities.News;
+import com.example.webcty.entities.newsPage.News;
 import com.example.webcty.mapper.NewsMapper;
 import com.example.webcty.repositories.NewsRepository;
 import com.example.webcty.services.NewsService;

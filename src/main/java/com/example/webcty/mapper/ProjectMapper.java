@@ -2,7 +2,7 @@ package com.example.webcty.mapper;
 
 import com.example.webcty.dto.request.ProjectRequest;
 import com.example.webcty.dto.response.ProjectResponse;
-import com.example.webcty.entities.Project;
+import com.example.webcty.entities.projectPage.Project;
 import org.springframework.stereotype.Component;
 
 @Component

@@ -24,6 +24,11 @@ public class HomeIntroController {
         return ResponseEntity.ok(homeIntroService.getAllHomeIntro());
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<HomeIntroResponse> getHomeIntroById(@PathVariable Long id) {
+        return ResponseEntity.ok(homeIntroService.getHomeIntroById(id));
+    }
+
     @PostMapping
     public ResponseEntity<HomeIntroResponse> createHomeIntro(@RequestBody HomeIntroRequest homeIntro) {
         return ResponseEntity.ok(homeIntroService.createHomeIntro(homeIntro));

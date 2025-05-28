@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/company-managers")
+@RequestMapping("/api/company-manager")
 public class CompanyManagerController {
     private final CompanyManagerService companyManagerService;
 
@@ -20,8 +20,8 @@ public class CompanyManagerController {
     }
 
     @GetMapping
-    public ResponseEntity<List<CompanyManagerResponse>> getAllCompanyManagers() {
-        return ResponseEntity.ok(companyManagerService.getAllCompanyManagers());
+    public ResponseEntity<List<CompanyManagerResponse>> getAllCompanyManager() {
+        return ResponseEntity.ok(companyManagerService.getAllCompanyManager());
     }
 
     @GetMapping("/{id}")
@@ -30,8 +30,8 @@ public class CompanyManagerController {
     }
 
     @PostMapping
-    public ResponseEntity<CompanyManagerResponse> createCompanyManager(@RequestBody CompanyManagerRequest companyManager) {
-        return ResponseEntity.ok(companyManagerService.createCompanyManager(companyManager));
+    public ResponseEntity<CompanyManagerResponse> createCompanyManager(@RequestBody CompanyManagerRequest CompanyManager) {
+        return ResponseEntity.ok(companyManagerService.createCompanyManager(CompanyManager));
     }
 
     @PutMapping("/{id}")

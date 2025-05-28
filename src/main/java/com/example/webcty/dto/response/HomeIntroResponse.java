@@ -7,5 +7,6 @@ public class HomeIntroResponse {
     private Long id;
     private String title;
     private String description;
+    private String content;
     private String image;
 }

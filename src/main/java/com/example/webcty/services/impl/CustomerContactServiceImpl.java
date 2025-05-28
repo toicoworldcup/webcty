@@ -2,7 +2,7 @@ package com.example.webcty.services.impl;
 
 import com.example.webcty.dto.request.CustomerContactRequest;
 import com.example.webcty.dto.response.CustomerContactResponse;
-import com.example.webcty.entities.CustomerContact;
+import com.example.webcty.entities.contactPage.CustomerContact;
 import com.example.webcty.mapper.CustomerContactMapper;
 import com.example.webcty.repositories.CustomerContactRepository;
 import com.example.webcty.services.CustomerContactService;

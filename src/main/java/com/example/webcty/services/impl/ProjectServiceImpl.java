@@ -2,7 +2,7 @@ package com.example.webcty.services.impl;
 
 import com.example.webcty.dto.request.ProjectRequest;
 import com.example.webcty.dto.response.ProjectResponse;
-import com.example.webcty.entities.Project;
+import com.example.webcty.entities.projectPage.Project;
 import com.example.webcty.mapper.ProjectMapper;
 import com.example.webcty.repositories.ProjectRepository;
 import com.example.webcty.services.ProjectService;

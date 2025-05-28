@@ -5,9 +5,6 @@ import lombok.Data;
 @Data
 public class CompanyManagerResponse {
     private Long id;
-    private String name;
-    private String position;
+    private String title;
     private String description;
-    private String image;
-    private int orderIndex;
 }
