@@ -2,11 +2,9 @@ package com.example.webcty.services.impl;
 
 import com.example.webcty.dto.request.OurPartnerComponentRequest;
 import com.example.webcty.dto.response.OurPartnerComponentResponse;
-import com.example.webcty.entities.homePage.OurPartner;
 import com.example.webcty.entities.homePage.OurPartnerComponent;
 import com.example.webcty.mapper.OurPartnerComponentMapper;
 import com.example.webcty.repositories.OurPartnerComponentRepository;
-import com.example.webcty.repositories.OurPartnerRepository;
 import com.example.webcty.services.OurPartnerComponentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,13 +16,11 @@ import java.util.stream.Collectors;
 public class OurPartnerComponentServiceImpl implements OurPartnerComponentService {
     private final OurPartnerComponentRepository ourPartnerComponentRepository;
     private final OurPartnerComponentMapper ourPartnerComponentMapper;
-    private final OurPartnerRepository ourPartnerRepository;
 
     @Autowired
-    public OurPartnerComponentServiceImpl(OurPartnerComponentRepository ourPartnerComponentRepository, OurPartnerComponentMapper ourPartnerComponentMapper, OurPartnerRepository ourPartnerRepository) {
+    public OurPartnerComponentServiceImpl(OurPartnerComponentRepository ourPartnerComponentRepository, OurPartnerComponentMapper ourPartnerComponentMapper) {
         this.ourPartnerComponentRepository = ourPartnerComponentRepository;
         this.ourPartnerComponentMapper = ourPartnerComponentMapper;
-        this.ourPartnerRepository = ourPartnerRepository;
     }
 
     @Override
@@ -42,10 +38,6 @@ public class OurPartnerComponentServiceImpl implements OurPartnerComponentServic
 
     @Override
     public OurPartnerComponentResponse createOurPartnerComponent(OurPartnerComponentRequest ourPartnerComponentDTO) {
-        OurPartner ourPartner = ourPartnerRepository.findTopByOrderByIdAsc()
-                .orElseThrow(() -> new RuntimeException("OurPartner not found"));
-        ourPartnerComponentDTO.setOurPartnerId(ourPartner.getId());
-
         OurPartnerComponent ourPartnerComponent = ourPartnerComponentMapper.toEntity(ourPartnerComponentDTO);
         OurPartnerComponent savedOurPartnerComponent = ourPartnerComponentRepository.save(ourPartnerComponent);
         return ourPartnerComponentMapper.toResponseDTO(savedOurPartnerComponent);

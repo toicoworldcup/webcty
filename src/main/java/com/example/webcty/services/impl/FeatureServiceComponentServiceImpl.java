@@ -2,11 +2,9 @@ package com.example.webcty.services.impl;
 
 import com.example.webcty.dto.request.FeatureServiceComponentRequest;
 import com.example.webcty.dto.response.FeatureServiceComponentResponse;
-import com.example.webcty.entities.servicePage.FeatureService;
 import com.example.webcty.entities.servicePage.FeatureServiceComponent;
 import com.example.webcty.mapper.FeatureServiceComponentMapper;
 import com.example.webcty.repositories.FeatureServiceComponentRepository;
-import com.example.webcty.repositories.FeatureServiceRepository;
 import com.example.webcty.services.FeatureServiceComponentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,13 +16,11 @@ import java.util.stream.Collectors;
 public class FeatureServiceComponentServiceImpl implements FeatureServiceComponentService {
     private final FeatureServiceComponentRepository featureServiceComponentRepository;
     private final FeatureServiceComponentMapper featureServiceComponentMapper;
-    private final FeatureServiceRepository featureServiceRepository;
 
     @Autowired
-    public FeatureServiceComponentServiceImpl(FeatureServiceComponentRepository featureServiceComponentRepository, FeatureServiceComponentMapper featureServiceComponentMapper, FeatureServiceRepository featureServiceRepository) {
+    public FeatureServiceComponentServiceImpl(FeatureServiceComponentRepository featureServiceComponentRepository, FeatureServiceComponentMapper featureServiceComponentMapper) {
         this.featureServiceComponentRepository = featureServiceComponentRepository;
         this.featureServiceComponentMapper = featureServiceComponentMapper;
-        this.featureServiceRepository = featureServiceRepository;
     }
 
     @Override
@@ -42,10 +38,6 @@ public class FeatureServiceComponentServiceImpl implements FeatureServiceCompone
 
     @Override
     public FeatureServiceComponentResponse createFeatureServiceComponent(FeatureServiceComponentRequest featureServiceComponentDTO) {
-        FeatureService featureService = featureServiceRepository.findTopByOrderByIdAsc()
-                .orElseThrow(() -> new RuntimeException("FeatureService not found"));
-        featureServiceComponentDTO.setFeatureServiceId(featureService.getId());
-
         FeatureServiceComponent featureServiceComponent = featureServiceComponentMapper.toEntity(featureServiceComponentDTO);
         FeatureServiceComponent savedFeatureServiceComponent = featureServiceComponentRepository.save(featureServiceComponent);
         return featureServiceComponentMapper.toResponseDTO(savedFeatureServiceComponent);

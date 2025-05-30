@@ -1,7 +1,6 @@
 package com.example.webcty.dto.request;
 
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Positive;
 import lombok.Data;
 
 @Data
@@ -14,8 +13,4 @@ public class WhyChooseUsComponentRequest {
 
     @NotBlank(message = "Icon is required")
     private String icon;
-
-    @NotBlank(message = "ID WhyChooseUs không được để trống")
-    @Positive(message = "ID WhyChooseUs phải là số dương")
-    private Long whyChooseUsId;
 }

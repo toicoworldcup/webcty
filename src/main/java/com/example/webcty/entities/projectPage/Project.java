@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Table(name = "projects")
+@Table(name = "project")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
@@ -15,15 +15,9 @@ public class Project extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
+    @Column(columnDefinition = "TEXT", nullable = false)
     private String title;
 
-    @Column(columnDefinition = "TEXT", nullable = false)
+    @Column(columnDefinition = "MEDIUMTEXT", nullable = false)
     private String description;
-
-    @Column(columnDefinition = "LONGTEXT", nullable = false)
-    private String image;
-
-    @Column(columnDefinition = "LONGTEXT", nullable = false)
-    private String content;
 }

@@ -8,6 +8,6 @@ import java.util.List;
 
 @Repository
 public interface NewsRepository extends JpaRepository<News, Long> {
-    List<News> findTop4ByOrderIndexIsNotNullOrderByOrderIndexAsc();
-    List<News> findByOrderIndexIsNullOrderByCreatedDateDesc();
+    News findByOrderIndex(Integer orderIndex);
+    List<News> findByOrderIndexNotOrOrderIndexIsNullOrderByCreatedDateDesc(Integer orderIndex);
 }

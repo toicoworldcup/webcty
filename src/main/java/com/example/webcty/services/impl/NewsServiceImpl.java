@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -26,11 +27,11 @@ public class NewsServiceImpl implements NewsService {
 
     @Override
     public List<NewsResponse> getAllNews() {
-        List<News> top4 = newsRepository.findTop4ByOrderIndexIsNotNullOrderByOrderIndexAsc();
-        List<News> rest = newsRepository.findByOrderIndexIsNullOrderByCreatedDateDesc();
+        News top1 = newsRepository.findByOrderIndex(1);
+        List<News> rest = newsRepository.findByOrderIndexNotOrOrderIndexIsNullOrderByCreatedDateDesc(1);
 
         List<News> allNews = new ArrayList<>();
-        allNews.addAll(top4);
+        allNews.add(top1);
         allNews.addAll(rest);
 
         return allNews.stream()

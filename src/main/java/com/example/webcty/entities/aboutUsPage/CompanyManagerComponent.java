@@ -28,8 +28,4 @@ public class CompanyManagerComponent extends BaseEntity {
     private String image;
 
     private int orderIndex;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "company_manager_id", nullable = false)
-    private CompanyManager companyManager;
 }

@@ -5,19 +5,16 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Table(name = "who_we_are")
+@Table(name = "who_we_are_component")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
-public class WhoWeAre extends BaseEntity {
+public class WhoWeAreComponent extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(columnDefinition = "TEXT", nullable = false)
-    private String title;
-
-    @Column(columnDefinition = "MEDIUMTEXT", nullable = false)
-    private String description;
+    private String content;
 }

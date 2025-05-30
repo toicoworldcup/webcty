@@ -8,5 +8,4 @@ public class WhyChooseUsComponentResponse {
     private String title;
     private String description;
     private String icon;
-    private WhyChooseUsResponse whyChooseUs;
 }

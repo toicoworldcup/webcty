@@ -2,15 +2,10 @@ package com.example.webcty.entities.contactPage;
 
 import com.example.webcty.entities.bases.BaseEntity;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
-import java.util.List;
+import lombok.*;
 
 @Entity
-@Table(name = "home_banner")
+@Table(name = "contact_banner")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
@@ -20,15 +15,9 @@ public class ContactBanner extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
+    @Column(columnDefinition = "TEXT", nullable = false)
     private String slogan;
 
-    @ElementCollection
-    @CollectionTable(
-            name = "home_banner_images",
-            joinColumns = @JoinColumn(name = "home_banner_id")
-    )
-    @Column(name = "image_urls", nullable = false, columnDefinition = "LONGTEXT")
-    @Lob
-    private List<String> imageUrls;
+    @Column(columnDefinition = "LONGTEXT", nullable = false)
+    private String image;
 }

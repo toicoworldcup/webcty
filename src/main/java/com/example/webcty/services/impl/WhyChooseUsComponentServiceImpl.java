@@ -2,11 +2,9 @@ package com.example.webcty.services.impl;
 
 import com.example.webcty.dto.request.WhyChooseUsComponentRequest;
 import com.example.webcty.dto.response.WhyChooseUsComponentResponse;
-import com.example.webcty.entities.homePage.WhyChooseUs;
 import com.example.webcty.entities.homePage.WhyChooseUsComponent;
 import com.example.webcty.mapper.WhyChooseUsComponentMapper;
 import com.example.webcty.repositories.WhyChooseUsComponentRepository;
-import com.example.webcty.repositories.WhyChooseUsRepository;
 import com.example.webcty.services.WhyChooseUsComponentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,13 +16,11 @@ import java.util.stream.Collectors;
 public class WhyChooseUsComponentServiceImpl implements WhyChooseUsComponentService {
     private final WhyChooseUsComponentRepository whyChooseUsComponentRepository;
     private final WhyChooseUsComponentMapper whyChooseUsComponentMapper;
-    private final WhyChooseUsRepository whyChooseUsRepository;
 
     @Autowired
-    public WhyChooseUsComponentServiceImpl(WhyChooseUsComponentRepository whyChooseUsComponentRepository, WhyChooseUsComponentMapper whyChooseUsComponentMapper, WhyChooseUsRepository whyChooseUsRepository) {
+    public WhyChooseUsComponentServiceImpl(WhyChooseUsComponentRepository whyChooseUsComponentRepository, WhyChooseUsComponentMapper whyChooseUsComponentMapper) {
         this.whyChooseUsComponentRepository = whyChooseUsComponentRepository;
         this.whyChooseUsComponentMapper = whyChooseUsComponentMapper;
-        this.whyChooseUsRepository = whyChooseUsRepository;
     }
 
     @Override
@@ -42,10 +38,6 @@ public class WhyChooseUsComponentServiceImpl implements WhyChooseUsComponentServ
 
     @Override
     public WhyChooseUsComponentResponse createWhyChooseUsComponent(WhyChooseUsComponentRequest whyChooseUsComponentDTO) {
-        WhyChooseUs whyChooseUs = whyChooseUsRepository.findTopByOrderByIdAsc()
-                .orElseThrow(() -> new RuntimeException("WhyChooseUs not found"));
-        whyChooseUsComponentDTO.setWhyChooseUsId(whyChooseUs.getId());
-
         WhyChooseUsComponent whyChooseUsComponent = whyChooseUsComponentMapper.toEntity(whyChooseUsComponentDTO);
         WhyChooseUsComponent savedWhyChooseUsComponent = whyChooseUsComponentRepository.save(whyChooseUsComponent);
         return whyChooseUsComponentMapper.toResponseDTO(savedWhyChooseUsComponent);

@@ -23,8 +23,4 @@ public class WhyChooseUsComponent extends BaseEntity {
 
     @Column(columnDefinition = "LONGTEXT", nullable = false)
     private String icon;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "why_choose_us_id", nullable = false)
-    private WhyChooseUs whyChooseUs;
 }

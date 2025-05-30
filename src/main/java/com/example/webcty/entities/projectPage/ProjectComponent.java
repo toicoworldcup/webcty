@@ -1,26 +1,29 @@
-package com.example.webcty.entities.servicePage;
+package com.example.webcty.entities.projectPage;
 
 import com.example.webcty.entities.bases.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Table(name = "feature_service_component")
+@Table(name = "project_component")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
-public class FeatureServiceComponent extends BaseEntity {
+public class ProjectComponent extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
+    @Column(columnDefinition = "TEXT", nullable = false)
     private String title;
 
-    @Column(columnDefinition = "TEXT", nullable = false)
+    @Column(columnDefinition = "MEDIUMTEXT", nullable = false)
     private String description;
 
     @Column(columnDefinition = "LONGTEXT", nullable = false)
     private String image;
+
+    @Column(columnDefinition = "LONGTEXT", nullable = false)
+    private String content;
 }

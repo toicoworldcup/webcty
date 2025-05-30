@@ -20,8 +20,4 @@ public class OurPartnerComponent extends BaseEntity {
 
     @Column(columnDefinition = "LONGTEXT", nullable = false)
     private String logo;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "our_partner_id", nullable = false)
-    private OurPartner ourPartner;
 }

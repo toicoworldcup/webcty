@@ -13,10 +13,4 @@ public class ProjectRequest {
 
     @NotBlank(message = "Description is required")
     private String description;
-
-    @NotBlank(message = "Image is required")
-    private String image;
-
-    @NotBlank(message = "Content is required")
-    private String content;
 }

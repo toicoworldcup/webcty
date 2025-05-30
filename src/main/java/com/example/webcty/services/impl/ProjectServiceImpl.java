@@ -24,8 +24,8 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
-    public List<ProjectResponse> getAllProjects() {
-        return projectRepository.findAllByOrderByCreatedDateDesc().stream()
+    public List<ProjectResponse> getAllProject() {
+        return projectRepository.findAll().stream()
                 .map(projectMapper::toResponseDTO)
                 .collect(Collectors.toList());
     }
@@ -38,6 +38,7 @@ public class ProjectServiceImpl implements ProjectService {
 
     @Override
     public ProjectResponse createProject(ProjectRequest projectDTO) {
+        projectRepository.deleteAll();
         Project project = projectMapper.toEntity(projectDTO);
         Project savedProject = projectRepository.save(project);
         return projectMapper.toResponseDTO(savedProject);
@@ -49,8 +50,6 @@ public class ProjectServiceImpl implements ProjectService {
         if (project != null) {
             project.setTitle(updatedProjectDTO.getTitle());
             project.setDescription(updatedProjectDTO.getDescription());
-            project.setImage(updatedProjectDTO.getImage());
-            project.setContent(updatedProjectDTO.getContent());
             Project updatedProject = projectRepository.save(project);
             return projectMapper.toResponseDTO(updatedProject);
         }

@@ -8,5 +8,4 @@ public class FeatureServiceComponentResponse {
     private String title;
     private String description;
     private String image;
-    private FeatureServiceResponse featureService;
 }

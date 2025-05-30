@@ -10,6 +10,5 @@ public class WhatWeHaveComponentResponse {
     private String title;
     private String description;
     private String image;
-    private WhatWeHaveResponse whatWeHave;
     private List<String> tags;
 }

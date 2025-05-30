@@ -26,10 +26,6 @@ public class WhatWeHaveComponent extends BaseEntity {
     @Column(columnDefinition = "LONGTEXT", nullable = false )
     private String image;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "what-we-have_id", nullable = false)
-    private WhatWeHave whatWeHave;
-
     @ElementCollection
     @CollectionTable(
             name = "what_we_have_component_tags",

@@ -10,5 +10,4 @@ public class CompanyManagerComponentResponse {
     private String description;
     private String image;
     private int orderIndex;
-    private CompanyManagerResponse companyManager;
 }

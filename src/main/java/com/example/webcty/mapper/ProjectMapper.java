@@ -11,8 +11,6 @@ public class ProjectMapper {
         Project project = new Project();
         project.setTitle(dto.getTitle());
         project.setDescription(dto.getDescription());
-        project.setImage(dto.getImage());
-        project.setContent(dto.getContent());
         project.setCreatedBy("admin"); // Mặc định created_by là admin
         return project;
     }
@@ -22,8 +20,6 @@ public class ProjectMapper {
         dto.setId(entity.getId());
         dto.setTitle(entity.getTitle());
         dto.setDescription(entity.getDescription());
-        dto.setImage(entity.getImage());
-        dto.setContent(entity.getContent());
         return dto;
     }
 }

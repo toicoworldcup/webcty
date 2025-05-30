@@ -7,5 +7,4 @@ public class OurPartnerComponentResponse {
     private Long id;
     private String name;
     private String logo;
-    private OurPartnerResponse ourPartner;
 }

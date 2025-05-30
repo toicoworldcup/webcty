@@ -3,12 +3,10 @@ package com.example.webcty.services.impl;
 import com.example.webcty.dto.request.CompanyManagerComponentRequest;
 import com.example.webcty.dto.response.CompanyManagerComponentResponse;
 import com.example.webcty.entities.aboutUsPage.CompanyManagerComponent;
-import com.example.webcty.entities.aboutUsPage.CompanyManager;
 import com.example.webcty.mapper.CompanyManagerComponentMapper;
 import com.example.webcty.repositories.CompanyManagerComponentRepository;
 import com.example.webcty.repositories.CompanyManagerRepository;
 import com.example.webcty.services.CompanyManagerComponentService;
-import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,13 +17,11 @@ import java.util.stream.Collectors;
 public class CompanyManagerComponentServiceImpl implements CompanyManagerComponentService {
     private final CompanyManagerComponentRepository companyManagerComponentRepository;
     private final CompanyManagerComponentMapper companyManagerComponentMapper;
-    private final CompanyManagerRepository companyManagerRepository;
 
     @Autowired
-    public CompanyManagerComponentServiceImpl(CompanyManagerComponentRepository companyManagerComponentRepository, CompanyManagerComponentMapper companyManagerComponentMapper, CompanyManagerRepository companyManagerRepository) {
+    public CompanyManagerComponentServiceImpl(CompanyManagerComponentRepository companyManagerComponentRepository, CompanyManagerComponentMapper companyManagerComponentMapper) {
         this.companyManagerComponentRepository = companyManagerComponentRepository;
         this.companyManagerComponentMapper = companyManagerComponentMapper;
-        this.companyManagerRepository = companyManagerRepository;
     }
 
     @Override
@@ -57,9 +53,6 @@ public class CompanyManagerComponentServiceImpl implements CompanyManagerCompone
             companyManagerComponent.setDescription(updatedCompanyManagerComponentDTO.getDescription());
             companyManagerComponent.setImage(updatedCompanyManagerComponentDTO.getImage());
             companyManagerComponent.setOrderIndex(updatedCompanyManagerComponentDTO.getOrderIndex());
-            CompanyManager companyManager = companyManagerRepository.findById(updatedCompanyManagerComponentDTO.getCompanyManagerId())
-                    .orElseThrow(() -> new RuntimeException("CompanyManager not found"));
-            companyManagerComponent.setCompanyManager(companyManager);
             CompanyManagerComponent updatedCompanyManagerComponent = companyManagerComponentRepository.save(companyManagerComponent);
             return companyManagerComponentMapper.toResponseDTO(updatedCompanyManagerComponent);
         }

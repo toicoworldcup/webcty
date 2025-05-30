@@ -4,7 +4,7 @@ import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
 @Data
-public class FeatureServiceComponentRequest {
+public class ProjectComponentRequest {
     @NotBlank(message = "Title is required")
     private String title;
 
@@ -13,4 +13,7 @@ public class FeatureServiceComponentRequest {
 
     @NotBlank(message = "Image is required")
     private String image;
+
+    @NotBlank(message = "Content is required")
+    private String content;
 }
