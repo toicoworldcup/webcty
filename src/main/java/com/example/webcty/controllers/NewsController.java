@@ -5,6 +5,7 @@ import com.example.webcty.dto.response.NewsResponse;
 import com.example.webcty.services.NewsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -29,16 +30,19 @@ public class NewsController {
         return ResponseEntity.ok(newsService.getNewsById(id));
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN', 'EDITOR')")
     @PostMapping
     public ResponseEntity<NewsResponse> createNews(@RequestBody NewsRequest news) {
         return ResponseEntity.ok(newsService.createNews(news));
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN', 'EDITOR')")
     @PutMapping("/{id}")
     public ResponseEntity<NewsResponse> updateNews(@PathVariable Long id, @RequestBody NewsRequest updateNews) {
         return ResponseEntity.ok(newsService.updateNews(id, updateNews));
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN', 'EDITOR')")
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteNews(@PathVariable Long id) {
         newsService.deleteNews(id);
