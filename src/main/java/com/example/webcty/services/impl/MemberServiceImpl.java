@@ -51,8 +51,6 @@ public class MemberServiceImpl implements MemberService {
             member.setUsername(updatedMemberDTO.getUsername());
             member.setEmail(updatedMemberDTO.getEmail());
             member.setEmCode(updatedMemberDTO.getEmCode());
-            member.setPassword(updatedMemberDTO.getPassword());
-            member.setRole(updatedMemberDTO.getRole());
             Member updatedMember = memberRepository.save(member);
             return memberMapper.toResponseDTO(updatedMember);
         }

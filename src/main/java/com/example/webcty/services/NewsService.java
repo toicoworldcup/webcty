@@ -1,6 +1,7 @@
 package com.example.webcty.services;
 
 import com.example.webcty.dto.request.NewsRequest;
+import com.example.webcty.dto.request.ReorderRequest;
 import com.example.webcty.dto.response.NewsResponse;
 
 import java.util.List;
@@ -15,4 +16,6 @@ public interface NewsService {
     NewsResponse updateNews(Long id, NewsRequest updatedNews);
 
     void deleteNews(Long id);
+
+    void reorderNews(List<ReorderRequest> reorderList);
 }

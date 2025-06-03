@@ -5,13 +5,12 @@ import com.example.webcty.dto.response.CustomerContactResponse;
 import com.example.webcty.services.CustomerContactService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/customer-contacts")
+@RequestMapping("/api/customer-contact")
 public class CustomerContactController {
     private final CustomerContactService customerContactService;
 
@@ -35,13 +34,11 @@ public class CustomerContactController {
         return ResponseEntity.ok(customerContactService.createCustomerContact(customerContact));
     }
 
-    @PreAuthorize("hasAnyRole('ADMIN', 'EDITOR')")
     @PutMapping("/{id}")
     public ResponseEntity<CustomerContactResponse> updateCustomerContact(@PathVariable Long id, @RequestBody CustomerContactRequest updateCustomerContact) {
         return ResponseEntity.ok(customerContactService.updateCustomerContact(id, updateCustomerContact));
     }
 
-    @PreAuthorize("hasAnyRole('ADMIN', 'EDITOR')")
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteCustomerContact(@PathVariable Long id) {
         customerContactService.deleteCustomerContact(id);

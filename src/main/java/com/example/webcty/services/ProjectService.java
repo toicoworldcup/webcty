@@ -6,7 +6,7 @@ import com.example.webcty.dto.response.ProjectResponse;
 import java.util.List;
 
 public interface ProjectService {
-    List<ProjectResponse> getAllProjects();
+    List<ProjectResponse> getAllProject();
 
     ProjectResponse getProjectById(Long id);
 

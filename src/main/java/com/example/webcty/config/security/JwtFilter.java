@@ -42,7 +42,6 @@ public class JwtFilter extends OncePerRequestFilter {
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
             var userDetails = userDetailsService.loadUserByUsername(username);
             if (jwtUtil.validateToken(token, userDetails)) {
-                // Lấy role từ token
                 String roleStr = jwtUtil.extractClaim(token, claims -> claims.get("role", String.class));
                 if (roleStr != null) {
                     try {
@@ -54,13 +53,11 @@ public class JwtFilter extends OncePerRequestFilter {
                         authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
                         SecurityContextHolder.getContext().setAuthentication(authToken);
                     } catch (IllegalArgumentException e) {
-                        // Log error if role is invalid
                         logger.error("Invalid role in token: " + roleStr);
                     }
                 }
             }
         }
-
         filterChain.doFilter(request, response);
     }
 }

@@ -3,7 +3,6 @@ package com.example.webcty.services.impl;
 import com.example.webcty.dto.request.CompanyInfoRequest;
 import com.example.webcty.dto.response.CompanyInfoResponse;
 import com.example.webcty.entities.CompanyInfo;
-import com.example.webcty.mapper.BannerMapper;
 import com.example.webcty.mapper.CompanyInfoMapper;
 import com.example.webcty.repositories.CompanyInfoRepository;
 import com.example.webcty.services.CompanyInfoService;
@@ -20,9 +19,9 @@ public class CompanyInfoServiceImpl implements CompanyInfoService {
     private final CompanyInfoMapper companyInfoMapper;
 
     @Autowired
-    public CompanyInfoServiceImpl(CompanyInfoRepository companyInfoRepository, BannerMapper bannerMapper) {
+    public CompanyInfoServiceImpl(CompanyInfoRepository companyInfoRepository, CompanyInfoMapper companyInfoMapper) {
         this.companyInfoRepository = companyInfoRepository;
-        this.companyInfoMapper = new CompanyInfoMapper();
+        this.companyInfoMapper = companyInfoMapper;
     }
 
     @Override

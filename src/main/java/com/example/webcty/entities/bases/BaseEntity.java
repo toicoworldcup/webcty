@@ -19,21 +19,20 @@ import java.time.LocalDateTime;
 @EntityListeners(AuditingEntityListener.class)
 public class BaseEntity {
     @CreatedDate
-    @Column(name = "created_date", updatable = false)
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Ho_Chi_Minh")
+    @Column(name = "created_date", nullable = false, updatable = false)
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "UTC")
     private LocalDateTime createdDate;
 
     @CreatedBy
-    @Column(name = "created_by", updatable = false)
+    @Column(name = "created_by", nullable = false, updatable = false)
     private String createdBy;
 
     @LastModifiedDate
     @Column(name = "modified_date")
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Ho_Chi_Minh")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "UTC")
     private LocalDateTime modifiedDate;
 
     @LastModifiedBy
     @Column(name = "modified_by")
     private String modifiedBy;
 }
-

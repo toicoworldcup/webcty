@@ -19,7 +19,6 @@ public class CompanyInfoMapper {
         companyInfo.setContactAddress(dto.getContactAddress());
         companyInfo.setWorkingHours(dto.getWorkingHours());
         companyInfo.setMapUrl(dto.getMapUrl());
-        companyInfo.setCreatedBy("admin"); // Mặc định created_by là admin
         return companyInfo;
     }
 

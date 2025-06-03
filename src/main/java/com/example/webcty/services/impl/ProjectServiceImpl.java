@@ -2,7 +2,7 @@ package com.example.webcty.services.impl;
 
 import com.example.webcty.dto.request.ProjectRequest;
 import com.example.webcty.dto.response.ProjectResponse;
-import com.example.webcty.entities.Project;
+import com.example.webcty.entities.projectPage.Project;
 import com.example.webcty.mapper.ProjectMapper;
 import com.example.webcty.repositories.ProjectRepository;
 import com.example.webcty.services.ProjectService;
@@ -24,7 +24,7 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
-    public List<ProjectResponse> getAllProjects() {
+    public List<ProjectResponse> getAllProject() {
         return projectRepository.findAll().stream()
                 .map(projectMapper::toResponseDTO)
                 .collect(Collectors.toList());
@@ -38,19 +38,18 @@ public class ProjectServiceImpl implements ProjectService {
 
     @Override
     public ProjectResponse createProject(ProjectRequest projectDTO) {
+        projectRepository.deleteAll();
         Project project = projectMapper.toEntity(projectDTO);
         Project savedProject = projectRepository.save(project);
         return projectMapper.toResponseDTO(savedProject);
     }
 
     @Override
-    public ProjectResponse updateProject(Long id, ProjectRequest updatedprojectDTO) {
+    public ProjectResponse updateProject(Long id, ProjectRequest updatedProjectDTO) {
         Project project = projectRepository.findById(id).orElse(null);
         if (project != null) {
-            project.setTitle(updatedprojectDTO.getTitle());
-            project.setDescription(updatedprojectDTO.getDescription());
-            project.setImage(updatedprojectDTO.getImage());
-            project.setTags(updatedprojectDTO.getTags());
+            project.setTitle(updatedProjectDTO.getTitle());
+            project.setDescription(updatedProjectDTO.getDescription());
             Project updatedProject = projectRepository.save(project);
             return projectMapper.toResponseDTO(updatedProject);
         }

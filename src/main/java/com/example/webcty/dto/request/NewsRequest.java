@@ -11,6 +11,9 @@ public class NewsRequest {
     @NotBlank(message = "Description is required")
     private String description;
 
+    @NotBlank(message = "Content is required")
+    private String content;
+
     @NotBlank(message = "Image is required")
     private String image;
 }

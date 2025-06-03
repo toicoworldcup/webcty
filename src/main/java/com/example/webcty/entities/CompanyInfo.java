@@ -2,7 +2,10 @@ package com.example.webcty.entities;
 
 import com.example.webcty.entities.bases.BaseEntity;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table(name = "company_info")
@@ -18,10 +21,10 @@ public class CompanyInfo extends BaseEntity {
     @Column(nullable = false)
     private String siteName;
 
-    @Column(columnDefinition = "TEXT")
+    @Column(columnDefinition = "TEXT", nullable = false)
     private String siteDescription;
 
-    @Column(nullable = false)
+    @Column(columnDefinition = "LONGTEXT", nullable = false)
     private String icon;
 
     @Column(nullable = false)

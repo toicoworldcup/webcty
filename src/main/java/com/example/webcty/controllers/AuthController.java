@@ -35,8 +35,6 @@ public class AuthController {
 
         memberRequest.setPassword(passwordEncoder.encode(memberRequest.getPassword()));
 
-        memberRequest.setRole(MemberRole.EDITOR);
-
         MemberResponse newMember = memberService.createMember(memberRequest);
 
         return ResponseEntity.ok("User registered successfully!");
